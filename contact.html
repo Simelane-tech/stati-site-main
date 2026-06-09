@@ -1945,6 +1945,71 @@ function initReveal() {
   });
 }
 
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  const success = document.getElementById('contactSuccess');
+  const reset = document.getElementById('contactReset');
+  const errorBox = document.getElementById('contactError');
+  
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errorBox.classList.remove('show');
+    
+    // Clear previous errors
+    ['name','email','message'].forEach(key => setError(form, key, ''));
+    
+    // Get form data
+    const data = Object.fromEntries(new FormData(form).entries());
+    let valid = true;
+    
+    // Validate fields
+    if (!String(data.name || '').trim()) { 
+      setError(form, 'name', 'Name is required'); 
+      valid = false; 
+    }
+    if (!String(data.email || '').trim()) { 
+      setError(form, 'email', 'Email is required'); 
+      valid = false; 
+    } else if (!validateEmail(String(data.email))) { 
+      setError(form, 'email', 'Invalid email address'); 
+      valid = false; 
+    }
+    if (!String(data.message || '').trim()) { 
+      setError(form, 'message', 'Message is required'); 
+      valid = false; 
+    }
+    
+    if (!valid) return;
+    
+    // Submit the form via fetch to handle response and show custom success
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        form.classList.add('hidden');
+        success.style.display = 'block';
+        // Scroll to success message
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        errorBox.classList.add('show');
+      }
+    }).catch(() => {
+      errorBox.classList.add('show');
+    });
+  });
+  
+  reset?.addEventListener('click', () => {
+    success.style.display = 'none';
+    form.classList.remove('hidden');
+    form.reset();
+  });
+}
+
 function initCounters() {
   const counters = document.querySelectorAll('.counter');
   const observer = new IntersectionObserver((entries) => {
