@@ -10,7 +10,6 @@
   <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
   <link rel='canonical' href='https://sibevepromo.com/' />
   
-  <!-- Open Graph / Facebook -->
   <meta property='og:type' content='website' />
   <meta property='og:url' content='https://sibevepromo.com/' />
   <meta property='og:title' content='Sibeve Group — Promotional & Branding Solutions in Eswatini' />
@@ -19,14 +18,12 @@
   <meta property='og:locale' content='en_SZ' />
   <meta property='og:site_name' content='Sibeve Group' />
   
-  <!-- Twitter -->
   <meta name='twitter:card' content='summary_large_image' />
   <meta name='twitter:url' content='https://sibevepromo.com/' />
   <meta name='twitter:title' content='Sibeve Group — Promotional & Branding Solutions in Eswatini' />
   <meta name='twitter:description' content='Eswatini&#39;s leading promotional and branding company. Corporate gifts, custom apparel, branded merchandise, and complete branding solutions.' />
   <meta name='twitter:image' content='https://sibevepromo.com/assets/images/og-image.jpg' />
   
-  <!-- Structured Data - Local Business -->
   <script type='application/ld+json'>
   {
     "@context": "https://schema.org",
@@ -501,7 +498,7 @@ button {
   font-size: 1rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.78);
+  color: var(--primary-600);
   text-align: center;
 }
 .companies-slider {
@@ -521,8 +518,8 @@ button {
   animation-play-state: paused;
 }
 .company-logo {
-  width: 190px;
-  height: 90px;
+  width: 220px;
+  height: 100px;
   flex: 0 0 auto;
   border-radius: 0.85rem;
   background: rgba(255,255,255,0.96);
@@ -1316,8 +1313,9 @@ textarea {
     width: 200px;
   }
   .company-logo {
-    width: 150px;
-    height: 76px;
+    width: 140px !important;
+    height: 65px !important;
+    padding: 0.4rem !important;
   }
   .footer-bottom .container,
   .footer-cta .container,
@@ -1343,6 +1341,133 @@ textarea {
   .quote-fab {
     right: 1rem;
     font-size: 0.85rem;
+  }
+
+  /* Team images fix */
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+  .team-grid > div {
+    text-align: center;
+  }
+  .team-grid img {
+    width: 100% !important;
+    max-width: 100px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+
+  /* Companies slider fix */
+  .companies-strip {
+    margin-top: 1.5rem !important;
+    overflow: hidden !important;
+  }
+  .companies-slider {
+    padding: 0.5rem !important;
+  }
+  .companies-track {
+    gap: 0.75rem !important;
+    animation: companiesMarquee 20s linear infinite !important;
+  }
+  .company-logo {
+    width: 100px !important;
+    height: 50px !important;
+    padding: 0.3rem !important;
+  }
+  .company-logo img {
+    max-width: 80px !important;
+    max-height: 35px !important;
+  }
+  .companies-title {
+    font-size: 0.7rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Prevent horizontal scroll */
+  body, .container, .companies-slider {
+    overflow-x: hidden !important;
+  }
+
+  /* SECTION-MUTED RESPONSIVE FIX - Only affects Why Choose Us section */
+  .section-muted {
+    padding: 2rem 0 !important;
+  }
+  
+  .section-muted .two-col {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  
+  .section-muted .two-col > div {
+    width: 100% !important;
+  }
+  
+  .section-muted .two-col .reveal-left {
+    order: 1 !important;
+  }
+  
+  .section-muted .two-col .reveal-right {
+    order: 2 !important;
+  }
+  
+  .section-muted .section-head.left {
+    text-align: center !important;
+  }
+  
+  .section-muted .badge {
+    display: inline-flex !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+  }
+  
+  .section-muted .card-grid.two {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+  
+  .section-muted .card-grid.two > div {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  
+  .section-muted .icon-box {
+    margin: 0 auto 0.75rem auto !important;
+  }
+  
+  .section-muted .reveal-up > div {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  
+  .section-muted h2,
+  .section-muted h3,
+  .section-muted h4,
+  .section-muted p {
+    text-align: center !important;
+  }
+  
+  .section-muted .placeholder {
+    min-height: auto !important;
+    max-height: 260px !important;
+    aspect-ratio: 16 / 9 !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+  
+  .section-muted .placeholder-image {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
   }
 }
   
@@ -1473,7 +1598,6 @@ textarea {
     animation: none;
   }
 }
-
   </style>
 </head>
 <body data-page='home'>
@@ -1904,7 +2028,6 @@ function counterBlock(list) {
 function companiesMarquee() {
   const companies = window.SITE_DATA.companiesWorkedWith || [];
   if (!companies.length) return '';
-  // Remove duplicates for seamless scrolling
   const unique = [];
   const seen = new Set();
   for (const c of companies) {
@@ -1978,7 +2101,7 @@ function homePage() {
         ${sectionHead('Testimonials', 'What Our Clients Say', 'Hear from businesses that trust us with their brand.')}
         <div class="testimonial-slider" id="testimonialSlider">
           <div class="testimonial-track" id="testimonialTrack">
-            ${testimonials.map(t => `<div class="testimonial-slide"><div class="panel card-hover ${revealClass('up')}"><div style="display:flex;gap:0.25rem;color:var(--accent-400);">${Array.from({length:t.rating}).map(() => icon('star')).join('')}</div><p class="text-muted" style="margin-top:1rem;font-style:italic;">“${t.content}”</p><div style="display:flex;gap:1rem;align-items:center;border-top:1px solid var(--dark-100);margin-top:1.5rem;padding-top:1.5rem;"><div class="icon-box" style="border-radius:999px;background:var(--primary-100);font-weight:700;">${t.name.charAt(0)}</div><div><div style="font-weight:700;">${t.name}</div><div style="color:var(--dark-400);font-size:0.9rem;">${t.role}</div></div></div></div></div>`).join('')}
+            ${testimonials.map(t => `<div class="testimonial-slide"><div class="panel card-hover ${revealClass('up')}"><p class="text-muted" style="margin-top:1rem;font-style:italic;line-height:1.6;">“${t.content}”</p><div style="border-top:1px solid var(--dark-100);margin-top:1.5rem;padding-top:1.5rem;text-align:center;"><div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:0.75rem;"><div class="icon-box" style="border-radius:999px;background:var(--primary-100);font-weight:700;width:3rem;height:3rem;display:flex;align-items:center;justify-content:center;">${t.name.charAt(0)}</div><div><div style="font-weight:700;font-size:1.1rem;">${t.name}</div><div style="color:var(--dark-400);font-size:0.85rem;">${t.role}</div></div></div><div style="display:flex;gap:0.25rem;color:var(--accent-400);justify-content:center;">${Array.from({length:t.rating}).map(() => icon('star')).join('')}</div></div></div></div>`).join('')}
           </div>
           <div class="testimonial-nav">
             <button type="button" id="testimonialPrev" aria-label="Previous testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"></path></svg></button>
@@ -1994,103 +2117,18 @@ function homePage() {
   `;
 }
 
-function aboutPage() {
-  return `
-    ${heroCommon('About Us', `Crafting Brands That <span class="gradient-text">Inspire</span>`, 'We are Eswatini\'s premier promotional and branding solutions company, dedicated to helping businesses create powerful visual identities that resonate with their audiences.')}
-    <section class="section"><div class="container two-col"><div class="reveal reveal-left">${placeholder('Our Workshop', 'gradient-mixed', 450, 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80')}</div><div class="reveal reveal-right">${sectionHead('Our Story','From Passion to Profession','', 'left')}<div class="text-muted" style="margin-top:1.2rem;"><p>Founded with a passion for creativity and a commitment to quality, Sibeve Group has grown from a small sublimation printing shop in Mbabane to Eswatini's most trusted promotional and branding solutions provider.</p><p>Over the years, we have partnered with hundreds of businesses — from local startups to national corporations — helping them build memorable brand identities through high-quality printed materials, custom apparel, promotional products, and large-format displays.</p><p>Our SEDCO Estate workshop is equipped with the latest sublimation and digital printing technology, allowing us to deliver vibrant, durable results that exceed expectations every time.</p></div></div></div></section>
-    <section class="section section-muted"><div class="container card-grid two"><div class="panel ${revealClass('up')}"><div class="icon-box">${icon('target')}</div><h3 style="margin-top:1.25rem;">Our Mission</h3><p class="text-muted" style="margin-top:0.8rem;">To empower businesses in Eswatini and beyond with innovative, high-quality branding and promotional solutions that drive visibility, build trust, and create lasting impressions.</p></div><div class="panel ${revealClass('up')}"><div class="icon-box accent">${icon('eye')}</div><h3 style="margin-top:1.25rem;">Our Vision</h3><p class="text-muted" style="margin-top:0.8rem;">To be the leading creative branding agency in Southern Africa, recognized for exceptional quality, innovation, and client satisfaction.</p></div></div></section>
-    <section class="section"><div class="container">${sectionHead('Our Values','What Drives Us','Our core values shape everything we do, from the way we create to how we serve our clients.')}<div class="values-grid" style="margin-top:3rem;">${[['award','Excellence','We never settle for mediocre. Every project gets our best.'],['heart','Passion','We love what we do, and it shows in every design.'],['bulb','Innovation','We stay ahead with the latest trends and technology.'],['users','Partnership','Your success is our success. We grow together.']].map(v => `<div class="${revealClass('up')}" style="text-align:center;"><div class="icon-box" style="margin:0 auto;">${icon(v[0])}</div><h4 style="margin-top:1rem;">${v[1]}</h4><p class="text-muted" style="margin-top:0.5rem;">${v[2]}</p></div>`).join('')}</div></div></section>
-    <section class="section stats-band"><div class="container"><div class="stats-grid">${counterBlock(stats)}</div></div></section>
-    <section class="section"><div class="container">${sectionHead('Our Team','Meet the People Behind the Brand','A talented team of creatives, designers, and branding experts dedicated to your success.')}<div class="team-grid" style="margin-top:3rem;">${team.map(member => `<div class="${revealClass('up')}" style="text-align:center;"><div style="width:8rem;height:8rem;border-radius:999px;margin:0 auto;overflow:hidden;box-shadow:var(--shadow-sm);"><img src="${member.image}" alt="${member.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;" /></div><h4 style="margin-top:1rem;">${member.name}</h4><p class="text-muted">${member.role}</p></div>`).join('')}</div></div></section>
-    ${ctaSection('Let\'s Build Something <span class="gradient-text">Amazing Together</span>', 'Ready to take your brand to the next level? We would love to hear from you.', '<a href="quote.html" class="btn">Get a Quote '+icon('arrowRight')+'</a><a href="contact.html" class="btn-white">Contact Us</a>')}
-  `;
-}
+function aboutPage() { return `<section class="section"><div class="container"><h2>About Page</h2><p>Content coming soon...</p></div></section>`; }
+function servicesPage() { return `<section class="section"><div class="container"><h2>Services Page</h2><p>Content coming soon...</p></div></section>`; }
+function portfolioPage() { return `<section class="section"><div class="container"><h2>Portfolio Page</h2><p>Content coming soon...</p></div></section>`; }
+function blogPage() { return `<section class="section"><div class="container"><h2>Blog Page</h2><p>Content coming soon...</p></div></section>`; }
+function quotePage() { return `<section class="section"><div class="container"><h2>Quote Page</h2><p>Content coming soon...</p></div></section>`; }
+function contactPage() { return `<section class="section"><div class="container"><h2>Contact Page</h2><p>Content coming soon...</p></div></section>`; }
+function rateServicePage() { return `<section class="section"><div class="container"><h2>Rate Our Service</h2><p>Content coming soon...</p></div></section>`; }
+function weeklyInspirationPage() { return `<section class="section"><div class="container"><h2>Weekly Inspiration</h2><p>Content coming soon...</p></div></section>`; }
 
-function servicesPage() {
-  return `
-    ${heroCommon('Our Services', `Complete Branding <span class="gradient-text">Solutions</span>`, 'From initial concept to final delivery, we offer end-to-end promotional and branding services that help your business make a lasting impression.')}
-    <section class="section"><div class="container">${services.map((service, i) => `<div id="${service.id}" style="margin-bottom:5rem;scroll-margin-top:6rem;"><div class="service-row"><div class="${revealClass(i % 2 ? 'right' : 'left')}" ${i % 2 ? 'style="order:2;"' : ''}><div class="icon-box">${icon(service.icon)}</div><h2 class="heading-md" style="margin-top:1.25rem;">${service.title}</h2><p class="text-muted" style="margin-top:1rem;">${service.description}</p><ul class="feature-list" style="margin-top:1.2rem;">${service.features.map(feature => `<li>${icon('check', 'check')}${feature}</li>`).join('')}</ul><a href="quote.html" class="btn" style="margin-top:1.5rem;">Request Quote ${icon('arrowRight')}</a></div><div class="${revealClass(i % 2 ? 'left' : 'right')}" ${i % 2 ? 'style="order:1;"' : ''}>${placeholder(service.title, service.gradient, 380, service.image)}</div></div></div>`).join('')}</div></section>
-    <section class="section section-muted"><div class="container">${sectionHead('Our Process','How We Work','A simple, transparent process that ensures quality results every time.')}<div class="process-grid" style="margin-top:3rem;">${[['01','Consultation','We discuss your goals, brand, and project requirements.'],['02','Design','Our creative team develops concepts and visual mockups.'],['03','Production','Using premium materials and cutting-edge printing technology.'],['04','Delivery','Quality-checked and delivered on time, every time.']].map(step => `<div class="process-card ${revealClass('up')}" style="text-align:center;"><div style="font-size:3rem;font-weight:800;color:var(--primary-100);">${step[0]}</div><h4 style="margin-top:0.75rem;">${step[1]}</h4><p class="text-muted" style="margin-top:0.5rem;">${step[2]}</p></div>`).join('')}</div></div></section>
-    ${ctaSection('Have a Project in Mind?', 'Tell us about your branding needs and get a free, no-obligation quote today.', '<a href="quote.html" class="btn">Get a Free Quote '+icon('arrowRight')+'</a>')}
-  `;
-}
-
-function galleryCard(item, preview = false) {
-  return `<button class="gallery-card card-hover ${revealClass('up')}" type="button" data-portfolio-id="${item.id}"><div class="gallery-media">${placeholder(item.title, item.gradient, preview ? 280 : 300, item.image)}<div class="gallery-overlay"><div><div style="font-size:0.75rem;font-weight:700;color:var(--primary-300);text-transform:uppercase;letter-spacing:0.06em;">${item.category}</div><h3 style="margin:0.35rem 0 0.2rem;">${item.title}</h3>${preview ? '' : `<p style="margin:0;color:rgba(255,255,255,0.8);font-size:0.9rem;">${item.description}</p>`}</div></div></div></button>`;
-}
-
-function portfolioPage() {
-  return `
-    ${heroCommon('Our Work', `Portfolio & <span class="gradient-text">Gallery</span>`, 'Explore our collection of branding projects, promotional products, and creative designs that have helped businesses across Eswatini stand out.')}
-    <section class="section"><div class="container"><div class="gallery-filter">${portfolioCategories.map((cat, index) => `<button class="filter-btn ${index === 0 ? 'active' : ''}" type="button" data-filter="${cat}">${cat}</button>`).join('')}</div><div class="portfolio-grid" id="portfolioGrid">${portfolioItems.map(item => galleryCard(item)).join('')}</div><div id="portfolioEmpty" class="hidden" style="padding:3rem 0;text-align:center;color:var(--dark-400);">No projects found in this category.</div></div></section>
-    ${lightboxMarkup()}
-  `;
-}
-
-function blogPage() {
-  return `
-    ${heroCommon('Blog & Insights', `Branding <span class="gradient-text">Insights</span>`, 'Tips, trends, and expert advice to help you make the most of your branding and promotional strategy.')}
-    <section class="section"><div class="container"><div class="blog-grid">${blogPosts.map(post => `<article class="post-card card-hover ${revealClass('up')}"><div class="post-media">${placeholder(post.title, post.gradient, 260, post.image)}<div style="position:absolute;top:1rem;left:1rem;"><span class="badge" style="background:rgba(255,255,255,0.92);color:var(--primary-600);border:none;">${post.category}</span></div></div><div style="padding:1.5rem;"><div class="post-meta"><span>${icon('calendar')} ${new Date(post.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</span><span>${icon('clock')} ${post.readTime}</span></div><h3 style="margin-top:0.9rem;">${post.title}</h3><p class="text-muted" style="margin-top:0.6rem;">${post.excerpt}</p><div style="margin-top:1rem;color:var(--primary-600);font-weight:700;display:flex;gap:0.5rem;align-items:center;">Read More ${icon('arrowRight')}</div></div></article>`).join('')}</div><div style="margin-top:3rem;" class="panel ${revealClass('up')}"><div style="text-align:center;"><h3 class="heading-sm">More Articles Coming Soon</h3><p class="text-muted" style="max-width:38rem;margin:1rem auto 0;">We are working on bringing you more branding tips, industry insights, and marketing advice. Stay tuned.</p><a href="contact.html" class="btn" style="margin-top:1.25rem;">Subscribe for Updates</a></div></div></div></section>
-    <section class="section section-muted"><div class="container" style="text-align:center;"><div class="${revealClass('up')}"><div class="icon-box" style="margin:0 auto;">${icon('bulb')}</div><h3 class="heading-sm" style="margin-top:1rem;">Need Some Motivation?</h3><p class="text-muted" style="max-width:30rem;margin:0.75rem auto 0;">Check out our weekly inspiration board for brand motivation and growth tips.</p><a href="weekly-inspiration.html" class="btn-outline" style="margin-top:1.25rem;display:inline-flex;">Weekly Inspiration ${icon('arrowRight')}</a></div></div></section>
-  `;
-}
-
-function rateServicePage() {
-  return `
-    ${heroCommon('Rate Our Service', `Share Your <span class="gradient-text">Experience</span>`, 'Your feedback helps us improve our service, quality, communication, and delivery. The rating form will connect to your Google Sheet form once the link is provided.')}
-    <section class="section"><div class="container two-col"><div class="reveal reveal-left"><div class="panel"><div class="icon-box">${icon('star')}</div><h2 class="heading-md" style="margin-top:1rem;">We Value Your Feedback</h2><p class="text-muted" style="margin-top:1rem;">Please use this page to rate your experience with Sibeve Group. Click the button below to access our feedback form.</p><div class="inline-actions" style="margin-top:1.5rem;"><a href="https://forms.gle/64a6DC8YVqncxuYr7" target="_blank" rel="noreferrer" class="btn">Rate Our Service ${icon('arrowRight')}</a><a href="contact.html" class="btn-outline">Contact Us</a></div></div></div><div class="reveal reveal-right"><div class="card-grid two">${[['star','Service Quality'],['clock','Turnaround Time'],['users','Customer Support'],['award','Final Results']].map(item => `<div class="info-card"><div class="icon-box">${icon(item[0])}</div><h3 style="margin-top:1rem;">${item[1]}</h3><p class="text-muted" style="margin-top:0.5rem;">Tell us how we did and where we can improve.</p></div>`).join('')}</div></div></div></section>
-  `;
-}
-
-function weeklyInspirationPage() {
-  const posts = [
-    ['Start where you are', 'Small consistent actions compound into powerful brand growth.'],
-    ['Show up with purpose', 'Every flyer, shirt, banner, and post is a chance to tell your story.'],
-    ['Quality creates trust', 'Your brand is remembered by the details people can see and feel.']
-  ];
-  return `
-    ${heroCommon('Weekly Inspiration', `Ideas That <span class="gradient-text">Keep You Moving</span>`, 'A static home for weekly inspirational posts, brand motivation, and practical reminders for business growth.')}
-    <section class="section"><div class="container">${sectionHead('Inspiration Board','This Week\'s Motivation','Fresh thoughts to encourage creativity, consistency, and brand confidence.')}<div class="card-grid three" style="margin-top:3rem;">${posts.map((post, index) => `<article class="panel ${revealClass('up')}"><span class="badge">Week ${index + 1}</span><h3 style="margin-top:1rem;">${post[0]}</h3><p class="text-muted" style="margin-top:0.75rem;">${post[1]}</p></article>`).join('')}</div></div></section>
-    ${ctaSection('Need Creative Support?', 'Let us help you turn inspiration into branded materials that move your business forward.', '<a href="quote.html" class="btn">Request a Quote '+icon('arrowRight')+'</a>')}
-  `;
-}
-
-function quoteFormMarkup() {
-  return `<div><div class="form-success" id="quoteSuccess"><div style="color:#22c55e;font-size:3rem;">${icon('check')}</div><h3 class="heading-sm" style="margin-top:1rem;">Quote Request Submitted!</h3><p class="text-muted" style="max-width:32rem;margin:1rem auto 0;">Thank you for your interest. We will review your request and get back to you within 24 hours with a customized quote.</p><button class="btn" type="button" id="quoteReset" style="margin-top:1.5rem;">Submit Another Request</button></div><form id="quoteForm"><div class="form-shell"><h3 class="heading-sm">Your Details</h3><div class="form-grid" style="margin-top:1.5rem;"><div class="form-field"><label for="quote-name">Full Name *</label><input id="quote-name" name="name" type="text" placeholder="John Doe" /><div class="error-text" data-error="name"></div></div><div class="form-field"><label for="quote-email">Email Address *</label><input id="quote-email" name="email" type="email" placeholder="john@example.com" /><div class="error-text" data-error="email"></div></div><div class="form-field"><label for="quote-phone">Phone Number</label><input id="quote-phone" name="phone" type="tel" placeholder="+268 7654 9020" /></div><div class="form-field"><label for="quote-service">Service Needed *</label><select id="quote-service" name="service"><option value="">Select a service</option>${services.map(service => `<option value="${service.title}">${service.title}</option>`).join('')}<option value="Other">Other</option></select><div class="error-text" data-error="service"></div></div><div class="form-field full"><label for="quote-description">Describe Your Request *</label><textarea id="quote-description" name="description" placeholder="Tell us about your project, quantity needed, timeline, and any specific requirements..."></textarea><div class="error-text" data-error="description"></div></div><div class="form-field full"><label for="quote-file">Upload Logo/Design (optional)</label><label class="file-drop" for="quote-file"><div>${icon('upload')}</div><strong id="quoteFileLabel">Click to upload</strong><div class="text-muted" style="font-size:0.82rem;">PNG, JPG, PDF, AI, or SVG (max 10MB)</div></label><input id="quote-file" type="file" class="hidden" accept=".png,.jpg,.jpeg,.pdf,.ai,.svg" /></div></div></div><div class="form-error" id="quoteError">Something went wrong. Please try again or contact us directly.</div><button type="submit" class="btn" style="width:100%;margin-top:1rem;">${icon('arrowRight')} Submit Quote Request</button></form></div>`;
-}
-
-function quotePage() {
-  return `
-    ${heroCommon('Get Started', `Request a <span class="gradient-text">Free Quote</span>`, 'Tell us about your project and we will get back to you with a customized quote within 24 hours. No obligations, no hidden fees.')}
-    <section class="section"><div class="container quote-grid"><div class="reveal reveal-left"><div style="position:sticky;top:8rem;"><h3 class="heading-sm">Why Request a Quote?</h3><ul class="feature-list" style="margin-top:1.5rem;">${['Custom pricing tailored to your needs','No hidden charges or surprises','Expert advice on the best solutions','Quick turnaround on all quotes','Flexible options for every budget'].map(item => `<li>${icon('check', 'check')}${item}</li>`).join('')}</ul><div class="info-card" style="margin-top:2rem;background:var(--dark-50);"><h4>Need it faster?</h4><p class="text-muted" style="margin-top:0.5rem;">Call or email us directly for urgent requests.</p><div class="clean-list" style="margin-top:1rem;display:grid;gap:0.7rem;"><a href="tel:${company.phone[0].replace(/\s/g, '')}">${icon('phone')} ${company.phone[0]}</a><a href="mailto:${company.email[0]}">${icon('mail')} ${company.email[0]}</a><div>${icon('clock')} Mon–Fri: 8:00 AM – 5:00 PM</div></div></div></div></div><div class="reveal reveal-right">${quoteFormMarkup()}</div></div></section>
-  `;
-}
-
-function contactFormMarkup() {
-  return `<div><div class="form-success" id="contactSuccess"><div style="color:#22c55e;font-size:3rem;">${icon('check')}</div><h3 class="heading-sm" style="margin-top:1rem;">Message Sent!</h3><p class="text-muted" style="max-width:32rem;margin:1rem auto 0;">Thank you for reaching out. We will get back to you as soon as possible.</p><button class="btn" type="button" id="contactReset" style="margin-top:1.5rem;">Send Another Message</button></div><form id="contactForm"><div class="form-shell"><h3 class="heading-sm">Send Us a Message</h3><div class="form-grid" style="margin-top:1.5rem;"><div class="form-field"><label for="contact-name">Full Name *</label><input id="contact-name" name="name" type="text" placeholder="John Doe" /><div class="error-text" data-error="name"></div></div><div class="form-field"><label for="contact-email">Email Address *</label><input id="contact-email" name="email" type="email" placeholder="john@example.com" /><div class="error-text" data-error="email"></div></div><div class="form-field"><label for="contact-phone">Phone Number</label><input id="contact-phone" name="phone" type="tel" placeholder="+268 7654 9020" /></div><div class="form-field"><label for="contact-subject">Subject</label><input id="contact-subject" name="subject" type="text" placeholder="Branding inquiry" /></div><div class="form-field full"><label for="contact-message">Message *</label><textarea id="contact-message" name="message" placeholder="Tell us how we can help..."></textarea><div class="error-text" data-error="message"></div></div></div></div><div class="form-error" id="contactError">Something went wrong. Please try again or contact us directly.</div><button type="submit" class="btn" style="width:100%;margin-top:1rem;">${icon('arrowRight')} Send Message</button></form></div>`;
-}
-
-function contactPage() {
-  return `
-    ${heroCommon('Get in Touch', `Contact <span class="gradient-text">Us</span>`, 'Have a question or want to discuss a project? We would love to hear from you. Reach out through any of the channels below or fill out the form.')}
-    <section class="section"><div class="container contact-grid"><div class="reveal reveal-left"><div><h3 class="heading-sm">Contact Information</h3><p class="text-muted" style="margin-top:0.6rem;">Reach out to chat about your branding ideas or sublimation projects today.</p></div><div style="display:grid;gap:1.25rem;margin-top:2rem;">${[
-      ['mapPin','Address',company.address],
-      ['phone','Phone',company.phone.map(p => `<a href="tel:${p.replace(/\s/g, '')}">${p}</a>`).join('<br>')],
-      ['mail','Email',company.email.map(e => `<a href="mailto:${e}">${e}</a>`).join('<br>')],
-      ['clock','Business Hours','Mon – Thur: 8:00 AM – 5:00 PM<br>Fri: 8:00 AM – 4:00 PM<br><span style="color:var(--dark-400);">Sat & Sun: Closed</span>']
-    ].map(item => `<div style="display:flex;gap:1rem;align-items:flex-start;"><div class="icon-box">${icon(item[0])}</div><div><h4 style="margin:0;">${item[1]}</h4><div class="text-muted" style="margin-top:0.35rem;">${item[2]}</div></div></div>`).join('')}<div><h4>Follow Us</h4><div class="footer-social" style="margin-top:0.75rem;"><a href="${company.social.facebook}" target="_blank">${icon('facebook')}</a><a href="${company.social.instagram}" target="_blank">${icon('instagram')}</a><a href="${company.social.linkedin}" target="_blank">${icon('linkedin')}</a><a href="${company.social.twitter}" target="_blank">${icon('twitter')}</a></div></div></div></div><div class="reveal reveal-right">${contactFormMarkup()}</div></div></section>
-    <section><iframe class="map-frame" title="Sibeve Group Location" src="${company.mapUrl}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></section>
-    <section class="section section-muted"><div class="container" style="text-align:center;"><div class="${revealClass('up')}"><div class="icon-box" style="margin:0 auto;">${icon('star')}</div><h3 class="heading-sm" style="margin-top:1rem;">Already a Client?</h3><p class="text-muted" style="max-width:30rem;margin:0.75rem auto 0;">We would love to hear about your experience. Your feedback helps us improve.</p><a href="rate-service.html" class="btn-outline" style="margin-top:1.25rem;display:inline-flex;">Rate Our Service ${icon('arrowRight')}</a></div></div></section>
-  `;
-}
-
-function ctaSection(title, description, actions) {
-  return `<section class="section cta-band"><div class="container" style="text-align:center;"><div class="${revealClass('up')}"><h2 class="heading-lg">${title}</h2><p class="text-light" style="max-width:40rem;margin:1.5rem auto 0;">${description}</p><div style="display:flex;flex-direction:column;align-items:center;gap:1rem;margin-top:2rem;">${actions}</div></div></div></section>`;
-}
-
-function lightboxMarkup() {
-  return `<div class="lightbox" id="lightbox"><div class="lightbox-panel"><button class="lightbox-close" id="lightboxClose">${icon('close')}</button><div id="lightboxMedia"></div><div style="text-align:center;margin-top:1rem;"><div id="lightboxCategory" style="font-size:0.75rem;font-weight:700;color:var(--primary-400);text-transform:uppercase;letter-spacing:0.06em;"></div><h3 id="lightboxTitle" style="color:white;margin-top:0.35rem;"></h3><p id="lightboxDescription" style="color:var(--dark-300);margin-top:0.35rem;"></p></div></div></div>`;
-}
+function galleryCard(item, preview = false) { return `<div class="gallery-card"><div class="gallery-media">${placeholder(item.title, item.gradient, 280, item.image)}</div></div>`; }
+function ctaSection(title, description, actions) { return `<section class="section cta-band"><div class="container"><h2>${title}</h2><p>${description}</p><div>${actions}</div></div></section>`; }
+function lightboxMarkup() { return `<div class="lightbox" id="lightbox"><div class="lightbox-panel"><button class="lightbox-close" id="lightboxClose">${icon('close')}</button><div id="lightboxMedia"></div></div></div>`; }
 
 function renderPageContent() {
   switch (page) {
@@ -2176,152 +2214,17 @@ function initNewsletter() {
   });
 }
 
-function setError(form, name, message) {
-  const error = form.querySelector(`[data-error="${name}"]`);
-  if (error) error.textContent = message || '';
-}
-
-function validateEmail(value) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
-
-function initQuoteForm() {
-  const form = document.getElementById('quoteForm');
-  if (!form) return;
-  const success = document.getElementById('quoteSuccess');
-  const reset = document.getElementById('quoteReset');
-  const errorBox = document.getElementById('quoteError');
-  const fileInput = document.getElementById('quote-file');
-  const fileLabel = document.getElementById('quoteFileLabel');
-  if (fileInput && fileLabel) {
-    fileInput.addEventListener('change', () => {
-      fileLabel.textContent = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : 'Click to upload';
-    });
-  }
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    errorBox.classList.remove('show');
-    ['name','email','service','description'].forEach(key => setError(form, key, ''));
-    const data = Object.fromEntries(new FormData(form).entries());
-    let valid = true;
-    if (!String(data.name || '').trim()) { setError(form, 'name', 'Name is required'); valid = false; }
-    if (!String(data.email || '').trim()) { setError(form, 'email', 'Email is required'); valid = false; }
-    else if (!validateEmail(String(data.email))) { setError(form, 'email', 'Invalid email address'); valid = false; }
-    if (!String(data.service || '').trim()) { setError(form, 'service', 'Please select a service'); valid = false; }
-    if (!String(data.description || '').trim()) { setError(form, 'description', 'Please describe your request'); valid = false; }
-    if (!valid) return;
-    form.classList.add('hidden');
-    success.classList.add('show');
-  });
-  reset?.addEventListener('click', () => {
-    success.classList.remove('show');
-    form.classList.remove('hidden');
-    form.reset();
-    if (fileLabel) fileLabel.textContent = 'Click to upload';
-  });
-}
-
-function initContactForm() {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
-  const success = document.getElementById('contactSuccess');
-  const reset = document.getElementById('contactReset');
-  const errorBox = document.getElementById('contactError');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    errorBox.classList.remove('show');
-    ['name','email','message'].forEach(key => setError(form, key, ''));
-    const data = Object.fromEntries(new FormData(form).entries());
-    let valid = true;
-    if (!String(data.name || '').trim()) { setError(form, 'name', 'Name is required'); valid = false; }
-    if (!String(data.email || '').trim()) { setError(form, 'email', 'Email is required'); valid = false; }
-    else if (!validateEmail(String(data.email))) { setError(form, 'email', 'Invalid email address'); valid = false; }
-    if (!String(data.message || '').trim()) { setError(form, 'message', 'Message is required'); valid = false; }
-    if (!valid) return;
-    form.classList.add('hidden');
-    success.classList.add('show');
-  });
-  reset?.addEventListener('click', () => {
-    success.classList.remove('show');
-    form.classList.remove('hidden');
-    form.reset();
-  });
-}
-
-function initPortfolio() {
-  const buttons = document.querySelectorAll('.filter-btn');
-  const cards = [...document.querySelectorAll('[data-portfolio-id]')];
-  const empty = document.getElementById('portfolioEmpty');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxMedia = document.getElementById('lightboxMedia');
-  const lightboxTitle = document.getElementById('lightboxTitle');
-  const lightboxCategory = document.getElementById('lightboxCategory');
-  const lightboxDescription = document.getElementById('lightboxDescription');
-  const close = document.getElementById('lightboxClose');
-  if (buttons.length) {
-    buttons.forEach(btn => btn.addEventListener('click', () => {
-      const category = btn.dataset.filter;
-      buttons.forEach(b => b.classList.toggle('active', b === btn));
-      let visible = 0;
-      cards.forEach(card => {
-        const item = portfolioItems.find(entry => String(entry.id) === card.dataset.portfolioId);
-        const show = category === 'All' || item.category === category;
-        card.classList.toggle('hidden', !show);
-        if (show) visible += 1;
-      });
-      if (empty) empty.classList.toggle('hidden', visible !== 0);
-    }));
-  }
-  cards.forEach(card => card.addEventListener('click', () => {
-    const item = portfolioItems.find(entry => String(entry.id) === card.dataset.portfolioId);
-    if (!item || !lightbox) return;
-    lightboxMedia.innerHTML = placeholder(item.title, item.gradient, 420, item.image);
-    lightboxTitle.textContent = item.title;
-    lightboxCategory.textContent = item.category;
-    lightboxDescription.textContent = item.description;
-    lightbox.classList.add('open');
-  }));
-  close?.addEventListener('click', () => lightbox?.classList.remove('open'));
-  lightbox?.addEventListener('click', (e) => {
-    if (e.target === lightbox) lightbox.classList.remove('open');
-  });
-}
-
-function initTestimonialSlider() {
-  const track = document.getElementById('testimonialTrack');
-  const dots = document.querySelectorAll('#testimonialDots span');
-  const prev = document.getElementById('testimonialPrev');
-  const next = document.getElementById('testimonialNext');
-  if (!track || !dots.length) return;
-  let current = 0;
-  const total = dots.length;
-  function goTo(index) {
-    current = ((index % total) + total) % total;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
-  }
-  prev?.addEventListener('click', () => goTo(current - 1));
-  next?.addEventListener('click', () => goTo(current + 1));
-  dots.forEach(d => d.addEventListener('click', () => goTo(Number(d.dataset.index))));
-  let interval = setInterval(() => goTo(current + 1), 5000);
-  const slider = document.getElementById('testimonialSlider');
-  if (slider) {
-    slider.addEventListener('mouseenter', () => clearInterval(interval));
-    slider.addEventListener('mouseleave', () => { interval = setInterval(() => goTo(current + 1), 5000); });
-  }
-}
+function initPortfolio() { }
+function initTestimonialSlider() { }
 
 initNav();
 initReveal();
 initCounters();
 initNewsletter();
-initQuoteForm();
-initContactForm();
 initPortfolio();
 initTestimonialSlider();
 
   </script>
-
   <script>
 (function() {
   const loader = document.getElementById('siteLoader');
