@@ -578,14 +578,11 @@ function initQuoteForm() {
   const reset = document.getElementById('quoteReset');
   const errorBox = document.getElementById('quoteError');
   
-  // Remove any existing submit listeners
-  form.removeEventListener('submit', form.submitHandler);
-  
-  // Create new submit handler
-  form.submitHandler = (e) => {
-    // Validate before allowing native submission
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
     errorBox.classList.remove('show');
     
+    // Validate required fields
     const name = document.getElementById('quote-name')?.value.trim();
     const email = document.getElementById('quote-email')?.value.trim();
     const service = document.getElementById('quote-service')?.value;
@@ -598,44 +595,35 @@ function initQuoteForm() {
     if (!description) valid = false;
     
     if (!valid) {
-      e.preventDefault();
       errorBox.classList.add('show');
       return;
     }
     
-    // Allow native form submission - DO NOT use preventDefault()
-    // The form will redirect and FormSubmit will send auto-reply
-    // Show loading state on button
-    const submitBtn = form.querySelector('button[type="submit"]');
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = `${icon('loader')} Submitting...`;
-    }
-    
-    // Form submits naturally here - no fetch()
-  };
-  
-  form.addEventListener('submit', form.submitHandler);
+    // Submit the form via fetch for better UX
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        form.classList.add('hidden');
+        success.style.display = 'block';
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        errorBox.classList.add('show');
+      }
+    }).catch(() => {
+      errorBox.classList.add('show');
+    });
+  });
   
   reset?.addEventListener('click', () => {
     success.style.display = 'none';
     form.classList.remove('hidden');
     form.reset();
-    // Re-enable submit button if it was disabled
-    const submitBtn = form.querySelector('button[type="submit"]');
-    if (submitBtn) {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = `${icon('arrowRight')} Submit Quote Request`;
-    }
   });
-  
-  // Check if we returned from a successful form submission
-  if (window.location.hash === '#success' || window.location.search.includes('submit=success')) {
-    form.classList.add('hidden');
-    success.style.display = 'block';
-    // Clean the URL
-    window.history.replaceState({}, document.title, window.location.pathname);
-  }
 }
 initNav(); initReveal(); initCounters(); initNewsletter(); initQuoteForm();
 (function() { const loader = document.getElementById('siteLoader'); if (!loader) return; const hideLoader = () => loader.classList.add('is-hidden'); window.addEventListener('load', () => window.setTimeout(hideLoader, 350)); window.setTimeout(hideLoader, 3500); })();
