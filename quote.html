@@ -289,11 +289,28 @@ textarea { min-height: 150px; resize: vertical; }
   .section { padding: 3.5rem 0; }
   .hero-inner { padding: 4.5rem 0 5rem; }
   .stats-inline, .stats-grid, .card-grid.three, .card-grid.two, .process-grid, .portfolio-grid, .values-grid, .team-grid, .footer-grid, .form-grid { grid-template-columns: 1fr; }
-  .brand { min-width: 200px; }
-  .brand img { width: 200px; }
+  /* Logo sizing */
+  .brand {
+    min-width: 160px !important;
+  }
+  .brand img {
+    width: 160px !important;
+  }
   .footer-bottom .container, .footer-cta .container, .inline-actions { flex-direction: column; align-items: flex-start; }
   .newsletter-form { flex-direction: column; }
   .whatsapp-fab, .quote-fab { right: 1rem; font-size: 0.8rem; padding: 0.6rem 0.9rem; }
+  /* Enhanced header sizing */
+  .heading-xl {
+    font-size: 2.2rem !important;
+    line-height: 1.2 !important;
+  }
+  .heading-lg {
+    font-size: 1.8rem !important;
+    line-height: 1.25 !important;
+  }
+  .heading-md {
+    font-size: 1.5rem !important;
+  }
 }
 .site-loader { position: fixed; inset: 0; z-index: 99999; display: flex; align-items: stretch; justify-content: center; overflow: hidden; background: linear-gradient(135deg, #f8faf8 0%, #ffffff 45%, #edf8ef 100%); transition: opacity 0.45s ease, visibility 0.45s ease; }
 .site-loader.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
