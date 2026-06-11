@@ -1728,9 +1728,124 @@ function rateServicePage() {
 }
 
 function weeklyInspirationPage() {
+  // Create mock weekly posts data directly in the function
+  const weeklyPosts = [
+    {
+      date: "08 June, 2026",
+      image: "assets/images/Weekly Posts/08%20Jun3,%202026.jpeg",
+      title: "360° Brand Impact",
+      message: "Exhibition stands. Branded gazebos. Print & signage. Corporate gifts. Branded apparel. Promotional solutions. We cover every angle of your brand visibility. Let's grow together."
+    },
+    {
+      date: "1 June, 2026",
+      image: "assets/images/Weekly Posts/1%20June%202026.png",
+      title: "Consistency is Key",
+      message: "Your brand's consistency builds trust. Every touchpoint matters."
+    },
+    {
+      date: "29 May, 2026",
+      image: "assets/images/Weekly Posts/29%20May%202026.jpg",
+      title: "Stand Out from the Crowd",
+      message: "Unique branding helps you get noticed in a saturated market."
+    },
+    {
+      date: "May 22, 2026",
+      image: "assets/images/Weekly Posts/22%20May%202026.jpg",
+      title: "Quality Speaks Volumes",
+      message: "Invest in quality promotional products that leave lasting impressions."
+    },
+    {
+      date: "May 11, 2026",
+      image: "assets/images/Weekly Posts/11%20May%202026.jpeg",
+      title: "Tell Your Story",
+      message: "Your brand story creates emotional connections with customers."
+    },
+    {
+      date: "May 8, 2026",
+      image: "assets/images/Weekly Posts/8%20May%202026.jpeg",
+      title: "Think Outside the Box",
+      message: "Creative promotional items make your brand unforgettable."
+    },
+    {
+      date: "April 27, 2026",
+      image: "assets/images/Weekly Posts/27%20April%202026.jpeg",
+      title: "First Impressions Matter",
+      message: "High-quality branded materials create positive first impressions."
+    },
+    { 
+    date: "April 20, 2026", 
+    image: "assets/images/Weekly Posts/20%20April%202026.jpeg", 
+    title: "Happy New Week", 
+    message: "It's Monday. Make it count." 
+    },
+    { 
+    date: "April 7, 2026", 
+    image: "assets/images/Weekly Posts/7%20April%202026.jpg", 
+    title: "We Design. We Create. We Print. We Brand.", 
+    message: "We've got you covered!" 
+    },
+    { 
+    date: "April 3, 2026", 
+    image: "assets/images/Weekly Posts/3%20April%202026.jpg", 
+    title: "Good Friday", 
+    message: "Wishing all our valued clients a peaceful Good Friday and a safe, enjoyable holiday period. We hope you take this time to rest and recharge." 
+    }, 
+    { 
+    date: "March 30, 2026", 
+    image: "assets/images/Weekly Posts/30%20March%202026.jpg", 
+    title: "Happy Monday – Mission Promise", 
+    message: "Start with one clear, manageable priority, then build momentum from there. Consistency beats intensity — show up and take the next step today." 
+    },
+    { 
+    date: "March 23, 2026", 
+    image: "assets/images/Weekly Posts/23%20March%202026.jpg", 
+    title: "Brand Focus", 
+    message: "Consistency builds recognition. Keep showing up." 
+    },
+    { 
+    date: "March 17, 2026", 
+    image: "assets/images/Weekly Posts/17%20March%202026.jpg", 
+    title: "New Week. New Goals.", 
+    message: "In a world full of noise, clarity is your greatest competitive advantage. Don't just blend in today — aim to be the brand everyone remembers." 
+    },
+    { 
+    date: "March 2, 2026", 
+    image: "assets/images/Weekly Posts/2%20March%202026.jpg", 
+    title: "Happy Monday", 
+    message: "Enjoy your days, do your activities sincerely. Rest assured that what you do will be useful in the future." 
+    },
+    { 
+    date: "February 26, 2026", 
+    image: "assets/images/Weekly Posts/26%20February%202026.jpg", 
+    title: "Daily Motivation", 
+    message: "If you work with heart, you don't need to work hard." 
+    },
+    {
+    date: "February 6, 2026", 
+    image: "assets/images/Weekly Posts/6%20February%202026.jpg", 
+    title: "Music Mood – Happy Friday", 
+    message: "End your week with good vibes and great energy." 
+    },
+  ];
+
   return `
     ${heroCommon('Weekly Inspiration', `Ideas That <span class="gradient-text">Keep You Moving</span>`, 'A home for weekly inspirational posts, brand motivation, and practical reminders for business growth.')}
-    <section class="section"><div class="container">${sectionHead('Inspiration Board','This Week\'s Motivation','Fresh thoughts to encourage creativity, consistency, and brand confidence.')}<div class="card-grid three" id="weeklyPostsGrid" style="margin-top:3rem;"><div style="grid-column:1/-1;text-align:center;padding:3rem 0;color:var(--dark-400);">Loading posts...</div></div></div></section>
+    <section class="section"><div class="container">${sectionHead('Inspiration Board','This Week\'s Motivation','Fresh thoughts to encourage creativity, consistency, and brand confidence.')}<div class="card-grid three" id="weeklyPostsGrid" style="margin-top:3rem;">${weeklyPosts.map(post => {
+      const fileName = `sibeve-weekly-${post.date.replace(/\s+/g, '-').replace(/,/g, '')}.jpg`;
+      return `<article class="panel reveal reveal-up" style="padding:0;overflow:hidden;border-radius:var(--radius-lg);">` +
+        `<div style="position:relative;cursor:pointer;" onclick="openWeeklyLightbox('${post.image}', '${post.date}', '${fileName}')">` +
+        `<img src="${post.image}" alt="Weekly Post - ${post.date}" loading="lazy" style="display:block;width:100%;height:250px;object-fit:cover;" />` +
+        `<div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent, rgba(0,0,0,0.8));padding:1.5rem 1rem 1rem;">` +
+        `<h4 style="color:white;margin:0;">${post.title}</h4>` +
+        `<p style="color:rgba(255,255,255,0.8);font-size:0.85rem;margin:0.5rem 0 0;">${post.message}</p>` +
+        `</div>` +
+        `<a href="${post.image}" download="${fileName}" onclick="event.stopPropagation();" style="position:absolute;top:1rem;right:1rem;width:2.5rem;height:2.5rem;background:rgba(0,0,0,0.7);border-radius:999px;display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='rgba(0,0,0,0.9)'" onmouseout="this.style.background='rgba(0,0,0,0.7)'">${iconSvg.download || '⬇️'}</a>` +
+        `</div>` +
+        `<div style="padding:1rem 1.25rem;border-top:1px solid var(--dark-100);">` +
+        `<span class="badge" style="display:inline-flex;align-items:center;gap:0.5rem;">📅 ${post.date}</span>` +
+        `</div>` +
+        `</article>`;
+    }).join('')}</div></div></section>
     ${ctaSection('Need Creative Support?', 'Let us help you turn inspiration into branded materials that move your business forward.', '<a href="quote.html" class="btn">Request a Quote '+icon('arrowRight')+'</a>')}
     ${lightboxMarkup()}
   `;
@@ -2047,7 +2162,7 @@ initQuoteForm();
 initContactForm();
 initPortfolio();
 initTestimonialSlider();
-initWeeklyPosts();
+// initWeeklyPosts(); // Removed - using static data instead
 
   </script>
 
