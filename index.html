@@ -1306,11 +1306,31 @@ textarea {
   .form-grid {
     grid-template-columns: 1fr;
   }
+  .heading-xl {
+  font-size: 2.2rem !important;
+  line-height: 1.2 !important;
+  }
+  .heading-lg {
+    font-size: 1.8rem !important;
+    line-height: 1.25 !important;
+  }
+  .heading-md {
+    font-size: 1.5rem !important;
+  }
+
+  /* Button scaling */
+  .btn, .btn-outline, .btn-white {
+    padding: 0.7rem 1.2rem !important;
+    font-size: 0.85rem !important;
+    border-radius: 2rem !important;
+  }
+
+  /* Logo sizing */
   .brand {
-    min-width: 200px;
+    min-width: 160px !important;
   }
   .brand img {
-    width: 200px;
+    width: 160px !important;
   }
   .company-logo {
     width: 140px !important;
@@ -1389,7 +1409,7 @@ textarea {
     overflow-x: hidden !important;
   }
 
-  /* SECTION-MUTED RESPONSIVE FIX - Only affects Why Choose Us section */
+  /* SECTION-MUTED RESPONSIVE FIX - WHY CHOOSE US SECTION MOBILE OPTIMIZATION */
   .section-muted {
     padding: 2rem 0 !important;
   }
@@ -1422,34 +1442,49 @@ textarea {
     margin: 0 auto !important;
   }
   
+  /* FIX: Why Choose Us cards - Icon NEXT to title (horizontal layout) */
   .section-muted .card-grid.two {
     grid-template-columns: 1fr !important;
-    gap: 1.25rem !important;
+    gap: 0.8rem !important;
+    margin-top: 1rem !important;
   }
   
   .section-muted .card-grid.two > div {
+    display: block !important;
+  }
+  
+  .section-muted .card-grid.two .reveal-up > div {
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
     align-items: center !important;
-    text-align: center !important;
+    gap: 0.75rem !important;
+    text-align: left !important;
   }
   
   .section-muted .icon-box {
-    margin: 0 auto 0.75rem auto !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
   }
   
-  .section-muted .reveal-up > div {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
+  .section-muted .card-grid.two h4 {
+    font-size: 0.95rem !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+  
+  .section-muted .card-grid.two p {
+    font-size: 0.8rem !important;
+    margin-top: 0.2rem !important;
+    text-align: left !important;
   }
   
   .section-muted h2,
   .section-muted h3,
   .section-muted h4,
   .section-muted p {
-    text-align: center !important;
+    text-align: left !important;
   }
   
   .section-muted .placeholder {
@@ -1469,49 +1504,43 @@ textarea {
     height: 100% !important;
     object-fit: cover !important;
   }
-
-  /* Enhanced header sizing */
-  .heading-xl {
-    font-size: 2.2rem !important;
-    line-height: 1.2 !important;
-  }
-  .heading-lg {
-    font-size: 1.8rem !important;
-    line-height: 1.25 !important;
-  }
-  .heading-md {
-    font-size: 1.5rem !important;
+    /* COMPANIES STRIP - ENHANCED MOBILE SIZE (Bigger title and logos) */
+  .companies-strip {
+    margin-top: 2rem !important;
   }
 
-  /* Button scaling */
-  .btn, .btn-outline, .btn-white {
-    padding: 0.7rem 1.2rem !important;
-    font-size: 0.85rem !important;
-    border-radius: 2rem !important;
+  .companies-title {
+    font-size: 1rem !important;          /* Increased from 0.7rem */
+    letter-spacing: 0.05em !important;
+    margin-bottom: 1rem !important;
+    font-weight: 800 !important;
+    color: var(--primary-600);
   }
 
-  /* Logo sizing */
-  .brand {
-    min-width: 160px !important;
-  }
-  .brand img {
-    width: 160px !important;
+  .companies-slider {
+    padding: 0.85rem !important;         /* More padding around the slider */
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 1rem;
   }
 
-  /* Section spacing */
-  .section {
-    padding: 2rem 0 !important;
-  }
-  .hero-inner {
-    padding: 2rem 0 2.5rem !important;
+  .companies-track {
+    gap: 1.25rem !important;             /* More space between logos */
+    animation: companiesMarquee 22s linear infinite !important;
   }
 
-  /* Card spacing */
-  .card, .panel {
-    padding: 1.25rem !important;
+  .company-logo {
+    width: 150px !important;             /* Increased from 100px */
+    height: 75px !important;             /* Increased from 50px */
+    padding: 0.6rem !important;
+    border-radius: 0.85rem;
+    background: var(--white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
-  .card-grid {
-    gap: 1rem !important;
+
+  .company-logo img {
+    max-width: 120px !important;         /* Larger logo images */
+    max-height: 55px !important;
+    object-fit: contain;
   }
 }
   
@@ -2035,7 +2064,7 @@ function footerMarkup() {
       </div>
       <div class="footer-bottom">
         <div class="container">
-          <p>© ${new Date().getFullYear()} Sibeve Group. All rights reserved.</p>
+          <p>© ${new Date().getFullYear()} Sibeve Promo&Branding. All rights reserved. | Designed by <a href="https://kwanelesimelane.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: var(--primary-400); text-decoration: none;">Kwanele</a></p>
           <div class="footer-bottom-links">
             <a href="terms-and-conditions.html">Terms & Conditions</a>
             <a href="privacy-policy.html">Privacy Policy</a>
@@ -2157,7 +2186,7 @@ function homePage() {
         </div>
       </div>
     </section>
-    ${ctaSection('Ready to Make Your Brand <span class="gradient-text">Stand Out?</span>', 'From concept to creation, we are here to bring your vision to life.', '<a href="quote.html" class="btn">Get a Free Quote '+icon('arrowRight')+'</a><a href="services.html" class="btn-white">Explore Services</a>')}
+    
   `;
 }
 
