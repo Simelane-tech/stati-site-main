@@ -646,150 +646,162 @@ button {
   transform: translateY(-6px);
   box-shadow: var(--shadow-md);
 }
-.testimonial-slider {
-  position: relative;
-  margin-top: 3rem;
-  overflow: hidden;
-  padding: 1.5rem 0.25rem 0.5rem;
-}
-.testimonial-track {
-  display: flex;
-  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-.testimonial-slide {
-  min-width: 100%;
-  box-sizing: border-box;
-  padding: 0 0.75rem;
-}
-.testimonial-card {
-  position: relative;
-  background: var(--white);
-  border-radius: 1.5rem;
-  padding: 3.5rem 2.5rem 2.5rem;
-  box-shadow: 0 10px 40px -15px rgba(20, 138, 67, 0.18), 0 1px 0 0 rgba(255,255,255,0.6) inset;
-  border: 1px solid rgba(20, 138, 67, 0.08);
-  overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  max-width: 56rem;
-  margin: 0 auto;
-}
-.testimonial-card::before {
-  content: '\201C';
-  position: absolute;
-  top: -1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 9rem;
-  line-height: 1;
-  color: var(--primary-500);
-  opacity: 0.14;
-  pointer-events: none;
-}
-.testimonial-card::after {
-  content: '';
-  position: absolute;
-  inset: auto -10% -50% auto;
-  width: 60%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(249, 155, 29, 0.12), transparent 70%);
-  pointer-events: none;
-}
-.testimonial-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 22px 55px -18px rgba(20, 138, 67, 0.32);
-}
-.testimonial-stars {
-  display: inline-flex;
-  justify-content: center;
-  gap: 0.2rem;
-  color: var(--accent-400);
-  filter: drop-shadow(0 2px 6px rgba(249, 155, 29, 0.35));
-}
-.testimonial-content {
-  margin-top: 1.25rem;
-  font-size: 1.1rem;
-  line-height: 1.75;
-  color: var(--dark-700, #2a2d31);
-  font-style: italic;
-  position: relative;
-  z-index: 1;
-  max-width: 44rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-.testimonial-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  align-items: center;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px dashed rgba(20, 138, 67, 0.18);
-}
-.testimonial-meta .testimonial-avatar { margin-bottom: 0.6rem; }
-.testimonial-avatar {
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 1.2rem;
-  color: var(--white);
-  background: linear-gradient(135deg, var(--primary-500), var(--accent-500, #f99b1d));
-  box-shadow: 0 8px 18px -6px rgba(20, 138, 67, 0.45);
-  flex: 0 0 auto;
-}
-.testimonial-name { font-weight: 700; color: var(--dark-800, #1a1d20); }
-.testimonial-role { color: var(--dark-400); font-size: 0.88rem; margin-top: 0.2rem; }
-.testimonial-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.25rem;
-  margin-top: 2.25rem;
-}
-.testimonial-nav button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.85rem;
-  height: 2.85rem;
-  border-radius: 999px;
-  border: 1px solid var(--dark-200);
-  background: var(--white);
-  color: var(--dark-600);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 14px -6px rgba(0,0,0,0.08);
-}
-.testimonial-nav button svg { width: 1.1rem; height: 1.1rem; }
-.testimonial-nav button:hover {
-  background: linear-gradient(135deg, var(--primary-500), var(--accent-500, #f99b1d));
-  border-color: transparent;
-  color: var(--white);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px -8px rgba(20, 138, 67, 0.45);
-}
-.testimonial-dots {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-.testimonial-dots span {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 999px;
-  background: var(--dark-200);
-  transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-  cursor: pointer;
-}
-.testimonial-dots span.active {
-  background: linear-gradient(90deg, var(--primary-500), var(--accent-500, #f99b1d));
-  width: 1.85rem;
-}
+    /* ===== TESTIMONIALS ===== */
+    .testimonial-slider {
+      position: relative;
+      margin-top: 3rem;
+      overflow: hidden;
+      padding: 1.5rem 0.25rem 0.5rem;
+      width: 100%;
+    }
+    .testimonial-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+      width: 100%;
+    }
+    .testimonial-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+      padding: 0 0.75rem;
+      display: flex;
+      justify-content: center;
+    }
+    .testimonial-card {
+      position: relative;
+      background: var(--white);
+      border-radius: 1.5rem;
+      padding: 3.5rem 2.5rem 2.5rem;
+      box-shadow: 0 10px 40px -15px rgba(20, 138, 67, 0.18), 0 1px 0 0 rgba(255,255,255,0.6) inset;
+      border: 1px solid rgba(20, 138, 67, 0.08);
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      max-width: 56rem;
+      margin: 0 auto;
+      text-align: center;
+      width: 100%;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: -1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 9rem;
+      line-height: 1;
+      color: var(--primary-500);
+      opacity: 0.14;
+      pointer-events: none;
+    }
+    .testimonial-card::after {
+      content: '';
+      position: absolute;
+      inset: auto -10% -50% auto;
+      width: 60%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(249, 155, 29, 0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 55px -18px rgba(20, 138, 67, 0.32);
+    }
+    .testimonial-stars {
+      display: inline-flex;
+      justify-content: center;
+      gap: 0.2rem;
+      color: var(--accent-400);
+      filter: drop-shadow(0 2px 6px rgba(249, 155, 29, 0.35));
+    }
+    .testimonial-content {
+      margin-top: 1.25rem;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--dark-700, #2a2d31);
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+      max-width: 44rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .testimonial-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      align-items: center;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed rgba(20, 138, 67, 0.18);
+    }
+    .testimonial-avatar {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--primary-500), var(--accent-500, #f99b1d));
+      box-shadow: 0 8px 18px -6px rgba(20, 138, 67, 0.45);
+      flex: 0 0 auto;
+      margin-bottom: 0.6rem;
+    }
+    .testimonial-name { font-weight: 700; color: var(--dark-800, #1a1d20); }
+    .testimonial-role { color: var(--dark-400); font-size: 0.88rem; margin-top: 0.2rem; }
+    .testimonial-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+      margin-top: 2.25rem;
+      position: relative;
+      z-index: 5;
+    }
+    .testimonial-nav button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.85rem;
+      height: 2.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--dark-200);
+      background: var(--white);
+      color: var(--dark-600);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px -6px rgba(0,0,0,0.08);
+      position: relative;
+      z-index: 10;
+      pointer-events: auto;
+    }
+    .testimonial-nav button svg { width: 1.1rem; height: 1.1rem; }
+    .testimonial-nav button:hover {
+      background: linear-gradient(135deg, var(--primary-500), var(--accent-500, #f99b1d));
+      border-color: transparent;
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px -8px rgba(20, 138, 67, 0.45);
+    }
+    .testimonial-dots {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .testimonial-dots span {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 999px;
+      background: var(--dark-200);
+      transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      cursor: pointer;
+    }
+    .testimonial-dots span.active {
+      background: linear-gradient(90deg, var(--primary-500), var(--accent-500, #f99b1d));
+      width: 1.85rem;
+    }
 @media (max-width: 640px) {
   .testimonial-card { padding: 2.75rem 1.5rem 1.75rem; border-radius: 1.25rem; }
   .testimonial-card::before { font-size: 7rem; top: -1.1rem; }
@@ -1816,12 +1828,18 @@ window.SITE_DATA = {
   ],
   portfolioCategories: ['All', 'Corporate Branding', 'Apparel', 'Promotional Items', 'Signage & Banners', 'Exhibition', 'Promotional Videos'],
   portfolioItems: [
-    { id: 71, title: 'Promotional Video Showcase', category: 'Promotional Videos', description: 'Promotional video content will be added here to showcase Sibeve campaigns, activations, and branded storytelling.', gradient: 'gradient-mixed', image: 'assets/images/Promotional%20Items/Branded%20Apperel.jpg' },
+  { id: 76, title: 'Sublimated Golf Tshirt', category: 'Apparel', description: 'sublimated golf tshirts, activations, and branded storytelling.', gradient: 'gradient-mixed', image: 'assets/images/July/Tshirt (2).png' },
+  { id: 76, title: 'K&H, Sublimated Golf Tshirt', category: 'Apparel', description: 'sublimated golf tshirts, activations, and branded storytelling.', gradient: 'gradient-mixed', image: 'assets/images/July/Tshirt (1).png' },
+  { id: 75, title: 'Poster Prints', category: 'Corporate Branding', description: 'Promotional poster prints, activations, and branded storytelling.', gradient: 'gradient-mixed', image: 'assets/images/July/poster.jpeg' },
+  { id: 74, title: 'Poster Prints', category: 'Corporate Branding', description: 'Promotional poster prints, activations, and branded storytelling.', gradient: 'gradient-mixed', image: 'assets/images/July/poster (2).jpeg' },
+  { id: 73, title: 'Poster Prints', category: 'Corporate Branding', description: 'Promotional poster prints, activations, and branded storytelling.', gradient: 'gradient-mixed', image: 'assets/images/July/poster (1).jpeg' },  
+  { id: 72, title: 'Contravision', category: 'Corporate Branding', description: 'Contravision graphic complited for a polished, professional brand presence.', gradient: 'gradient-mixed', image: 'assets/images/July/engraving.jpeg' },  
+  { id: 71, title: 'Promotional Prints', category: 'Promotional Videos', description: 'Promotional video content will be added here to showcase Sibeve campaigns, activations, and branded storytelling.', gradient: 'gradient-mixed', image: 'assets/images/Promotional%20Items/Branded%20Apperel.jpg' },
     { id: 1, title: 'After Painting Letshego', category: 'Corporate Branding', description: 'After Painting Letshego corporate branding project completed for a polished, professional brand presence.', gradient: 'gradient-primary', image: 'assets/images/Corporate%20Branding/After%20Painting%20-%20letshego.png' },
     { id: 2, title: 'Door Frosting', category: 'Corporate Branding', description: 'Door Frosting corporate branding project completed for a polished, professional brand presence.', gradient: 'gradient-accent', image: 'assets/images/Corporate%20Branding/Door%20frosting.png' },
     { id: 3, title: 'Glass Frosting', category: 'Corporate Branding', description: 'Glass Frosting corporate branding project completed for a polished, professional brand presence.', gradient: 'gradient-dark', image: 'assets/images/Corporate%20Branding/glass%20frosting.png' },
     { id: 4, title: 'Letsego Painting', category: 'Corporate Branding', description: 'Letsego Painting corporate branding project completed for a polished, professional brand presence.', gradient: 'gradient-dark-green', image: 'assets/images/Corporate%20Branding/letsego%20painting.png' },
-    { id: 5, title: 'Manzini Front Door Ffrostng', category: 'Corporate Branding', description: 'Manzini Front Door Ffrostng corporate branding project completed for a polished, professional brand presence.', gradient: 'gradient-accent-green', image: 'assets/images/Corporate%20Branding/Manzini%20front%20door%20ffrostng.jpeg' },
+    { id: 5, title: 'Manzini Front Door Frostng', category: 'Corporate Branding', description: 'Manzini Front Door Ffrostng corporate branding project completed for a polished, professional brand presence.', gradient: 'gradient-accent-green', image: 'assets/images/Corporate%20Branding/Manzini%20front%20door%20ffrostng.jpeg' },
     { id: 6, title: 'Manzini Front Door Frosting', category: 'Corporate Branding', description: 'Manzini Front Door Frosting corporate branding project completed for a polished, professional brand presence.', gradient: 'gradient-mixed', image: 'assets/images/Corporate%20Branding/Manzini%20Front%20Door%20Frosting.jpeg' },
     { id: 7, title: 'Manzini Wall Painting', category: 'Corporate Branding', description: 'Manzini Wall Painting corporate branding project completed for a polished, professional brand presence.', gradient: 'gradient-primary', image: 'assets/images/Corporate%20Branding/Manzini%20Wall%20painting.jpeg' },
     { id: 8, title: 'Nameplates', category: 'Corporate Branding', description: 'Nameplates corporate branding project completed for a polished, professional brand presence.', gradient: 'gradient-accent', image: 'assets/images/Corporate%20Branding/nameplates.png' },
@@ -2295,6 +2313,48 @@ initCounters();
 initNewsletter();
 initPortfolio();
 initTestimonialSlider();
+
+// ============================================================
+    // TESTIMONIAL SLIDER (FIXED: clickable buttons)
+    // ============================================================
+    (function initTestimonialSlider() {
+      const track = document.getElementById('testimonialTrack');
+      const dots = document.querySelectorAll('#testimonialDots span');
+      const prevBtn = document.getElementById('testimonialPrev');
+      const nextBtn = document.getElementById('testimonialNext');
+      if (!track || !dots.length) return;
+
+      let current = 0;
+      const total = dots.length;
+
+      function goTo(index) {
+        if (index < 0) index = total - 1;
+        if (index >= total) index = 0;
+        current = index;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+      }
+
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      // Attach event listeners (buttons are now clickable)
+      if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); next(); });
+      if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goTo(i));
+      });
+
+      // Optional: auto-play
+      let interval = setInterval(next, 6000);
+      const slider = document.getElementById('testimonialSlider');
+      if (slider) {
+        slider.addEventListener('mouseenter', () => clearInterval(interval));
+        slider.addEventListener('mouseleave', () => { interval = setInterval(next, 6000); });
+      }
+    })();
+
 
   </script>
   <script>
