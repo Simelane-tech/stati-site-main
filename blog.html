@@ -2255,7 +2255,9 @@ function initPortfolio() {
   cards.forEach(card => card.addEventListener('click', () => {
     const item = portfolioItems.find(entry => String(entry.id) === card.dataset.portfolioId);
     if (!item || !lightbox) return;
-    lightboxMedia.innerHTML = placeholder(item.title, item.gradient, 420, item.image);
+    lightboxMedia.innerHTML = item.image
+  ? `<img src="${item.image}" alt="${item.title}" style="display:block;width:100%;max-height:80vh;object-fit:contain;border-radius:var(--radius-lg);margin:0 auto;background:var(--dark-950);" />`
+  : placeholder(item.title, item.gradient, 420, item.image);
     lightboxTitle.textContent = item.title;
     lightboxCategory.textContent = item.category;
     lightboxDescription.textContent = item.description;
