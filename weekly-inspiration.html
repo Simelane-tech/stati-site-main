@@ -883,15 +883,19 @@ textarea {
 .map-frame:hover {
   filter: grayscale(0);
 }
+
+/*updated lightbox*/
+
 .lightbox {
   position: fixed;
   inset: 0;
   z-index: 80;
   display: none;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 1.5rem;
   background: rgba(0,0,0,0.9);
+  overflow-y: auto;
 }
 .lightbox.open {
   display: flex;
@@ -899,19 +903,50 @@ textarea {
 .lightbox-panel {
   position: relative;
   width: min(100%, 900px);
+  margin: auto;
   animation: scaleIn 0.35s ease;
 }
 .lightbox-close {
-  position: absolute;
-  top: -3rem;
-  right: 0;
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 2.6rem;
   height: 2.6rem;
   border-radius: 999px;
   border: none;
   background: rgba(255,255,255,0.12);
   color: var(--white);
+  cursor: pointer;
+  z-index: 2;
 }
+.lightbox-media {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--dark-950);
+}
+.lightbox-media img {
+  display: block;
+  width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  margin: 0 auto;
+  background: var(--dark-950);
+}
+.lightbox-body {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0 0.5rem 0.5rem;
+}
+@media (max-width: 640px) {
+  .lightbox { padding: 0.75rem; }
+  .lightbox-media img { max-height: 50vh; }
+}
+
+/*-----------     updated lightbox      ----------------*/
+
 .whatsapp-fab,
 .quote-fab {
   position: fixed;
@@ -1731,6 +1766,96 @@ function weeklyInspirationPage() {
   // Create mock weekly posts data directly in the function
   const weeklyPosts = [
     {
+      date: "08 September, 2026",
+      image: "assets/images/Weekly Posts/08%20Sept%202026.png",
+      title: "WELCOME TO SEPTEMBER!",
+      message: "Wishing you a new month full of growth and new opportunities. Thank you for trusting Sibeve with your brand!"
+    },
+    {
+      date: "28 August, 2026",
+      image: "assets/images/Weekly Posts/28%20Aug%202026.jpeg",
+      title: "TRADE FAIR 2026 STARTS TODAY!",
+      message: "Visit, explore, connect, and grow! Join us at the Mavuso Trade & Exhibition Center in Manzini for great deals, networking, and endless opportunities with Sibeve. See you there!"
+    },
+    {
+      date: "24 August, 2026",
+      image: "assets/images/Weekly Posts/24%20Aug%202026.jpeg",
+      title: "IT'S A NEW WEEK — MAKE IT HAPPEN!",
+      message: "Take that first step forward toward achieving something great this week. Own your goals and build momentum with Sibeve!"
+    },
+    {
+      date: "21 August, 2026",
+      image: "assets/images/Weekly Posts/21%20Aug%202026.jpeg",
+      title: "FRIDAY IS HERE — TIME TO CELEBRATE THE WORK!",
+      message: "Piece by piece, detail by detail—great brands are built through dedication and hard work. Finish the week strong and step into the weekend knowing you built something great with Sibeve!"
+    },
+    {
+      date: "17 August, 2026",
+      image: "assets/images/Weekly Posts/17%20Aug%202026.jpeg",
+      title: "NEW WEEK — FRESH START!",
+      message: "Clear your desk, grab your coffee, and set your goals. Turn a fresh start into real growth with Sibeve!"
+    },
+    {
+      date: "14 August, 2026",
+      image: "assets/images/Weekly Posts/14%20Aug%202026.jpeg",
+      title: "THE WEEKEND IS YOUR ENTRY TO REST, REFRESH & REBRAND.",
+      message: "Step away and recharge so you can come back inspired to create impact. Great brands are built with clarity, creativity, and passion. Make this weekend count with Sibeve!"
+    },
+    {
+      date: "10 August, 2026",
+      image: "assets/images/Weekly Posts/10%20Aug%202026.jpeg",
+      title: "New Week! Fresh Brands. Bold Impressions. Limitless Impact.",
+      message: "Monday isn't the start of the grind; it's the launch of your brand's next chapter. Own the narrative, lead with purpose, and make your presence unmistakable with Sibeve!"
+    },
+    {
+      date: "07 August, 2026",
+      image: "assets/images/Weekly Posts/7%20Aug%202026.jpeg",
+      title: "TAKE WHAT YOU NEED!",
+      message: "The right choice today, for better results tomorrow. From banners and branding to business cards and corporate gifts—make the right call with Sibeve!"
+    },
+    {
+      date: "03 August, 2026",
+      image: "assets/images/Weekly Posts/3%20Aug%202026.jpeg",
+      title: "STRONG BRANDS. LASTING IMPACT. LIMITLESS GROWTH.",
+      message: "Elevate your brand with display stands designed to captivate. Connect, inspire, and grow your presence with Sibeve!"
+    },
+    {
+      date: "31 July, 2026",
+      image: "assets/images/Weekly Posts/31%20July%202026.jpeg",
+      title: "Friday is Here! Building Brands. Making an Impact!",
+      message: "Your growth starts here. Wrap up the week strong and set your business up for lasting success with Sibeve!"
+    },
+    {
+      date: "24 July, 2026",
+      image: "assets/images/Weekly Posts/24%20Jul%202026.jpeg",
+      title: "TGIF! Good Brands Start Conversations. Great Brands Start Connections.",
+      message: "Wishing you a wonderful weekend! Relax, enjoy, make memories, and enjoy the Embiveni Biggest Braai!"
+    },
+    {
+      date: "20 July, 2026",
+      image: "assets/images/Weekly Posts/20%20Jul%202026.jpeg",
+      title: "BRAND IT. PROMOTE IT. GROW WITH IT.",
+      message: "Quality branded items that showcase your business, build recognition, and leave a lasting impression. Stand out, be consistent, and get results with Sibeve!"
+    },
+    {
+      date: "13 July, 2026",
+      image: "assets/images/Weekly Posts/13%20Jul%202026.jpeg",
+      title: "New Week, A New Start!",
+      message: "New opportunities await—let's make it count! Great things never come from comfort zones. Believe, focus, and achieve with Sibeve."
+    },
+    {
+      date: "10 July, 2026",
+      image: "assets/images/Weekly Posts/10%20Jul%202026.jpeg",
+      title: "Thank God it's FRIDAY!",
+      message: "ENJOY YOUR DAY AND BE HAPPY. It’s Friday with Sibeve—time to celebrate your wins and step into the weekend with energy!"
+    },
+    {
+      date: "06 July, 2026",
+      image: "assets/images/Weekly Posts/6%20July%202026.jpeg",
+      title: "Happy Monday! Purpose First, Progress Always.",
+      message: "Your vision, our dedication, real results. Branding, printing, merch, and stands—let's build your brand today!"
+    },
+    {
       date: "15 June, 2026",
       image: "assets/images/Weekly Posts/15%20June%202026.jpg",
       title: "MONDAY",
@@ -1885,26 +2010,40 @@ function initWeeklyPosts() {
     });
 }
 
-function openWeeklyLightbox(imageUrl, date, downloadName) {
+function openWeeklyLightbox(imageUrl, date, downloadName, title, message) {
   const lightbox = document.getElementById('lightbox');
   const lightboxMedia = document.getElementById('lightboxMedia');
   const lightboxTitle = document.getElementById('lightboxTitle');
   const lightboxCategory = document.getElementById('lightboxCategory');
   const lightboxDescription = document.getElementById('lightboxDescription');
+  const lightboxActions = document.getElementById('lightboxActions');
   const close = document.getElementById('lightboxClose');
   if (!lightbox) return;
-  lightboxMedia.innerHTML = `<img src="${imageUrl}" alt="Weekly Post - ${date}" style="max-width:100%;max-height:80vh;object-fit:contain;" />`;
-  lightboxTitle.textContent = `Weekly Post - ${date}`;
-  lightboxCategory.textContent = 'Inspiration';
-  lightboxDescription.innerHTML = `<a href="${imageUrl}" download="${downloadName}" class="btn" style="margin-top:1rem;">Download Image ${iconSvg.download || ''}</a>`;
+  lightboxMedia.innerHTML = `<img src="${imageUrl}" alt="Weekly Post - ${date}" />`;
+  lightboxCategory.textContent = date;
+  lightboxTitle.textContent = title || 'Weekly Post';
+  lightboxDescription.textContent = message || '';
+  if (lightboxActions) {
+    lightboxActions.innerHTML = `<a href="${imageUrl}" download="${downloadName}" class="btn">Download Image ${iconSvg.download || ''}</a>`;
+  }
   lightbox.classList.add('open');
-  close?.addEventListener('click', () => lightbox?.classList.remove('open'));
-  lightbox?.addEventListener('click', (e) => {
-    if (e.target === lightbox) lightbox.classList.remove('open');
-  });
-  document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox?.classList.contains('open')) lightbox.classList.remove('open');
-  });
+  document.body.style.overflow = 'hidden';
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  if (!lightbox.dataset.boundClose) {
+    lightbox.dataset.boundClose = 'true';
+    close?.addEventListener('click', () => closeLightbox());
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+  }
 }
 
 function quoteFormMarkup() {
@@ -1941,7 +2080,14 @@ function ctaSection(title, description, actions) {
 }
 
 function lightboxMarkup() {
-  return `<div class="lightbox" id="lightbox"><div class="lightbox-panel"><button class="lightbox-close" id="lightboxClose">${icon('close')}</button><div id="lightboxMedia"></div><div style="text-align:center;margin-top:1rem;"><div id="lightboxCategory" style="font-size:0.75rem;font-weight:700;color:var(--primary-400);text-transform:uppercase;letter-spacing:0.06em;"></div><h3 id="lightboxTitle" style="color:white;margin-top:0.35rem;"></h3><p id="lightboxDescription" style="color:var(--dark-300);margin-top:0.35rem;"></p></div></div></div>`;
+  return `<div class="lightbox" id="lightbox"><div class="lightbox-panel"><button class="lightbox-close" id="lightboxClose" aria-label="Close">${icon('close')}</button><div class="lightbox-media" id="lightboxMedia"></div><div class="lightbox-body"><div id="lightboxCategory" style="font-size:0.75rem;font-weight:700;color:var(--primary-400);text-transform:uppercase;letter-spacing:0.06em;"></div><h3 id="lightboxTitle" style="color:white;margin-top:0.35rem;"></h3><p id="lightboxDescription" style="color:var(--dark-300);margin-top:0.5rem;line-height:1.6;white-space:pre-line;"></p><div id="lightboxActions" style="margin-top:1.25rem;"></div></div></div></div>`;
+}
+
+function escJsAttr(str) {
+  return String(str == null ? '' : str)
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '&quot;');
 }
 
 function renderPageContent() {
