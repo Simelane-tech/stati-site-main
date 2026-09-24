@@ -2157,6 +2157,38 @@ function initQuoteForm() {
   });
 }
 
+function initNewsletter() {
+  const form = document.getElementById('newsletterForm');
+  const email = document.getElementById('newsletterEmail');
+  const success = document.getElementById('newsletterSuccess');
+  if (!form || !email || !success) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const value = email.value.trim();
+    if (!value) return;
+    const button = form.querySelector('button[type="submit"]');
+    const originalHtml = button ? button.innerHTML : '';
+    if (button) { button.disabled = true; button.textContent = 'Sending...'; }
+    fetch('/api/newsletter', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: value })
+    }).then(async (response) => {
+      const result = await response.json().catch(() => ({}));
+      if (response.ok && result.success) {
+        success.classList.add('show');
+        email.value = '';
+      } else {
+        alert(result.error || 'Could not subscribe right now. Please try again later.');
+      }
+    }).catch(() => {
+      alert('Could not subscribe right now. Please try again later.');
+    }).finally(() => {
+      if (button) { button.disabled = false; button.innerHTML = originalHtml; }
+    });
+  });
+}
+
 initNav();
 initReveal();
 initCounters();
@@ -2167,6 +2199,8 @@ initNewsletter();
 initQuoteForm();
 
   </script>
+
+  <script>
 (function() {
   const loader = document.getElementById('siteLoader');
   if (!loader) return;
