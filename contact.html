@@ -1826,6 +1826,10 @@ function contactFormMarkup() {
     <form id="contactForm" action="/api/contact" method="POST">
       <div class="form-shell">
         <h3 class="heading-sm">Send Us a Message</h3>
+        <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+          <label for="contact-company">Company</label>
+          <input type="text" id="contact-company" name="company" tabindex="-1" autocomplete="off">
+        </div>
         <div class="form-grid" style="margin-top:1.5rem;">
           <div class="form-field">
             <label for="contact-name">Full Name *</label>
@@ -1974,7 +1978,8 @@ function initContactForm() {
         email: data.email,
         phone: data.phone || '',
         subject: data.subject || '',
-        message: data.message
+        message: data.message,
+        company: data.company || ''
       })
     }).then(async response => {
       const result = await response.json().catch(() => ({}));
@@ -2096,6 +2101,62 @@ function initTestimonialSlider() {
   }
 }
 
+// added quoter form function
+
+function initQuoteForm() {
+  const form = document.getElementById('quoteForm');
+  if (!form) return;
+  const success = document.getElementById('quoteSuccess');
+  const reset = document.getElementById('quoteReset');
+  const errorBox = document.getElementById('quoteError');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errorBox.classList.remove('show');
+
+    const name = document.getElementById('quote-name')?.value.trim();
+    const email = document.getElementById('quote-email')?.value.trim();
+    const service = document.getElementById('quote-service')?.value;
+    const description = document.getElementById('quote-description')?.value.trim();
+    const company = document.getElementById('quote-company')?.value.trim() || '';
+
+    let valid = true;
+    if (!name) valid = false;
+    if (!email || !validateEmail(email)) valid = false;
+    if (!service) valid = false;
+    if (!description) valid = false;
+
+    if (!valid) {
+      errorBox.classList.add('show');
+      return;
+    }
+
+    fetch('/api/quote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone: document.getElementById('quote-phone')?.value.trim() || '', service, description, company })
+    }).then(async response => {
+      const result = await response.json().catch(() => ({}));
+      if (response.ok && result.success) {
+        form.classList.add('hidden');
+        success.style.display = 'block';
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        errorBox.textContent = result.error || 'Something went wrong. Please try again.';
+        errorBox.classList.add('show');
+      }
+    }).catch(() => {
+      errorBox.classList.add('show');
+    });
+  });
+
+  reset?.addEventListener('click', () => {
+    success.style.display = 'none';
+    form.classList.remove('hidden');
+    form.reset();
+  });
+}
+
 initNav();
 initReveal();
 initCounters();
@@ -2103,10 +2164,9 @@ initPortfolio();
 initTestimonialSlider();
 initContactForm();
 initNewsletter();
+initQuoteForm();
 
   </script>
-
-  <script>
 (function() {
   const loader = document.getElementById('siteLoader');
   if (!loader) return;

@@ -460,12 +460,16 @@ function quoteFormMarkup() {
     <form id="quoteForm" action="/api/quote" method="POST">
           <div class="form-shell">
             <h3 class="heading-sm">Your Details</h3>
-            <div class="form-grid" style="margin-top:1.5rem;">          
-          <div class="form-field">
-            <label for="quote-name">Full Name *</label>
-            <input id="quote-name" name="name" type="text" placeholder="John Doe" required />
-            <div class="error-text" data-error="name"></div>
-          </div>
+            <div class="form-grid" style="margin-top:1.5rem;">
+              <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+                <label for="quote-company">Company</label>
+                <input type="text" id="quote-company" name="company" tabindex="-1" autocomplete="off">
+              </div>
+              <div class="form-field">
+                <label for="quote-name">Full Name *</label>
+                <input id="quote-name" name="name" type="text" placeholder="John Doe" required />
+                <div class="error-text" data-error="name"></div>
+              </div>
           <div class="form-field">
             <label for="quote-email">Email Address *</label>
             <input id="quote-email" name="email" type="email" placeholder="john@example.com" required />

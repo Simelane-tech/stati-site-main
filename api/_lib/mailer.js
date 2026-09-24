@@ -146,7 +146,18 @@ async function readJsonBody(req) {
 }
 
 function setCorsHeaders(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Only allow requests from your own site(s). Add more, comma-separated,
+  // via the ALLOWED_ORIGINS env var if you add a custom domain later.
+  const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'https://stati-site-main.vercel.app/')
+    .split(',')
+    .map((o) => o.trim())
+    .filter(Boolean);
+
+  const origin = req.headers?.origin;
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Vary', 'Origin');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 }

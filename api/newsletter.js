@@ -1,6 +1,5 @@
 const { sendFormEmails, escapeHtml, readJsonBody, setCorsHeaders } = require('./_lib/mailer');
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const { isValidEmail, sanitizeField, isRateLimited, getClientIp } = require('./_lib/security');
 
 module.exports = async function handler(req, res) {
   setCorsHeaders(req, res);
@@ -13,6 +12,11 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ success: false, error: 'Method not allowed' });
   }
 
+  const ip = getClientIp(req);
+  if (isRateLimited(`newsletter:${ip}`, { limit: 5, windowMs: 10 * 60 * 1000 })) {
+    return res.status(429).json({ success: false, error: 'Too many requests. Please try again later.' });
+  }
+
   let body;
   try {
     body = await readJsonBody(req);
@@ -20,9 +24,9 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ success: false, error: 'Invalid request body' });
   }
 
-  const email = String(body.email || '').trim();
+  const email = sanitizeField(body.email, 254);
 
-  if (!email || !EMAIL_RE.test(email)) {
+  if (!email || !isValidEmail(email)) {
     return res.status(400).json({ success: false, error: 'Please provide a valid email address.' });
   }
 

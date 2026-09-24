@@ -1,6 +1,5 @@
 const { sendFormEmails, escapeHtml, readJsonBody, setCorsHeaders } = require('./_lib/mailer');
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const { isValidEmail, sanitizeField, isRateLimited, getClientIp } = require('./_lib/security');
 
 module.exports = async function handler(req, res) {
   setCorsHeaders(req, res);
@@ -13,6 +12,11 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ success: false, error: 'Method not allowed' });
   }
 
+  const ip = getClientIp(req);
+  if (isRateLimited(`contact:${ip}`, { limit: 5, windowMs: 10 * 60 * 1000 })) {
+    return res.status(429).json({ success: false, error: 'Too many requests. Please try again later.' });
+  }
+
   let body;
   try {
     body = await readJsonBody(req);
@@ -20,20 +24,21 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ success: false, error: 'Invalid request body' });
   }
 
-  const name = String(body.name || '').trim();
-  const email = String(body.email || '').trim();
-  const phone = String(body.phone || '').trim();
-  const subject = String(body.subject || '').trim();
-  const message = String(body.message || '').trim();
-
-  if (String(body.company || '').trim()) {
+  // Honeypot: if a hidden "company" field was filled in, silently pretend success.
+  if (sanitizeField(body.company, 200)) {
     return res.status(200).json({ success: true });
   }
+
+  const name = sanitizeField(body.name, 150);
+  const email = sanitizeField(body.email, 254);
+  const phone = sanitizeField(body.phone, 40);
+  const subject = sanitizeField(body.subject, 200);
+  const message = sanitizeField(body.message, 5000);
 
   if (!name || !email || !message) {
     return res.status(400).json({ success: false, error: 'Name, email, and message are required.' });
   }
-  if (!EMAIL_RE.test(email)) {
+  if (!isValidEmail(email)) {
     return res.status(400).json({ success: false, error: 'Please provide a valid email address.' });
   }
 
