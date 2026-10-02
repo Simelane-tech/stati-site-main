@@ -27,7 +27,8 @@
   <meta name='twitter:image' content='https://sibevepromo.com/assets/images/og-image.jpg' />
   
   <link rel='icon' href='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22248%22%20height%3D%2290%22%20viewBox%3D%220%200%20248%2090%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Crect%20width%3D%22248%22%20height%3D%2290%22%20fill%3D%22white%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M8%2037C12%2031%2018%2029%2025%2030C31%2031%2035%2035%2039%2041C33%2042%2028%2041%2023%2038C19%2035%2015%2034%208%2037Z%22%20fill%3D%22%23148A43%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M0%2033C5%2029%2011%2028%2016%2029C22%2031%2027%2035%2031%2041C25%2042%2020%2041%2015%2039C10%2037%206%2034%200%2033Z%22%20fill%3D%22%23148A43%22%2F%3E%0A%20%20%3Crect%20x%3D%2258%22%20y%3D%228%22%20width%3D%2228%22%20height%3D%2226%22%20fill%3D%22%23148A43%22%2F%3E%0A%20%20%3Crect%20x%3D%2291%22%20y%3D%228%22%20width%3D%2228%22%20height%3D%2226%22%20fill%3D%22%2344B649%22%2F%3E%0A%20%20%3Crect%20x%3D%22124%22%20y%3D%228%22%20width%3D%2228%22%20height%3D%2226%22%20fill%3D%22%239BC53D%22%2F%3E%0A%20%20%3Crect%20x%3D%22157%22%20y%3D%228%22%20width%3D%2228%22%20height%3D%2226%22%20fill%3D%22%23F7B53C%22%2F%3E%0A%20%20%3Crect%20x%3D%22190%22%20y%3D%228%22%20width%3D%2228%22%20height%3D%2226%22%20fill%3D%22%23F99B1D%22%2F%3E%0A%20%20%3Ctext%20x%3D%2226%22%20y%3D%2280%22%20fill%3D%22%23148A43%22%20font-family%3D%22Arial%20Black%2C%20Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2258%22%20font-weight%3D%22900%22%20letter-spacing%3D%22-3%22%3ESI%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%2285%22%20y%3D%2280%22%20fill%3D%22%236F7072%22%20font-family%3D%22Arial%20Black%2C%20Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2258%22%20font-weight%3D%22900%22%20letter-spacing%3D%22-3%22%3EBE%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22164%22%20y%3D%2280%22%20fill%3D%22%23F99B1D%22%20font-family%3D%22Arial%20Black%2C%20Arial%2C%20Helvetica%2C%20sans-serif%22%20font-size%3D%2258%22%20font-weight%3D%22900%22%20letter-spacing%3D%22-3%22%3EVE%3C%2Ftext%3E%0A%3C%2Fsvg%3E%0A' type='image/svg+xml' />
-  <style>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+ <style>
 :root {
   --primary-50: #eef9f1;
   --primary-100: #d8f1df;
@@ -1830,6 +1831,7 @@ function contactFormMarkup() {
           <label for="contact-company">Company</label>
           <input type="text" id="contact-company" name="company" tabindex="-1" autocomplete="off">
         </div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAFK6GaNJ-vUtafXf" data-callback="onContactTurnstileSuccess" style="margin-bottom:1rem;"></div>
         <div class="form-grid" style="margin-top:1.5rem;">
           <div class="form-field">
             <label for="contact-name">Full Name *</label>
@@ -1970,7 +1972,7 @@ function initContactForm() {
     if (!valid) return;
     
     // Submit the form via fetch as JSON
-    fetch('/api/contact', {
+      fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1979,7 +1981,8 @@ function initContactForm() {
         phone: data.phone || '',
         subject: data.subject || '',
         message: data.message,
-        company: data.company || ''
+        company: data.company || '',
+        turnstileToken: data['cf-turnstile-response'] || ''
       })
     }).then(async response => {
       const result = await response.json().catch(() => ({}));
@@ -1991,8 +1994,10 @@ function initContactForm() {
         errorBox.textContent = result.error || 'Something went wrong. Please try again.';
         errorBox.classList.add('show');
       }
+      if (window.turnstile) window.turnstile.reset();
     }).catch(() => {
       errorBox.classList.add('show');
+      if (window.turnstile) window.turnstile.reset();
     });
   
   });

@@ -1,5 +1,6 @@
 const { sendFormEmails, escapeHtml, readJsonBody, setCorsHeaders } = require('./_lib/mailer');
 const { isValidEmail, sanitizeField, isRateLimited, getClientIp } = require('./_lib/security');
+const { verifyTurnstile } = require('./_lib/turnstile');
 
 module.exports = async function handler(req, res) {
   setCorsHeaders(req, res);
@@ -27,6 +28,11 @@ module.exports = async function handler(req, res) {
   // Honeypot: if a hidden "company" field was filled in, silently pretend success.
   if (sanitizeField(body.company, 200)) {
     return res.status(200).json({ success: true });
+  }
+
+  const captchaOk = await verifyTurnstile(body.turnstileToken, ip);
+  if (!captchaOk) {
+    return res.status(400).json({ success: false, error: 'Verification failed. Please try again.' });
   }
 
   const name = sanitizeField(body.name, 150);
