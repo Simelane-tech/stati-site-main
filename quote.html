@@ -467,7 +467,6 @@ function quoteFormMarkup() {
                 <label for="quote-company">Company</label>
                 <input type="text" id="quote-company" name="company" tabindex="-1" autocomplete="off">
               </div>
-              <div class="cf-turnstile" data-sitekey="0x4AAAAAAFK6GaNJ-vUtafXf" style="margin-bottom:1rem;"></div>
               <div class="form-field">
                 <label for="quote-name">Full Name *</label>
                 <input id="quote-name" name="name" type="text" placeholder="John Doe" required />
@@ -497,6 +496,7 @@ function quoteFormMarkup() {
             <div class="error-text" data-error="description"></div>
           </div>
         </div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAFK6GaNJ-vUtafXf" style="margin-bottom:1rem;"></div>
       </div>
       <div class="form-error" id="quoteError">Something went wrong. Please try again or contact us directly at +268 7654 9020.</div>
       <button type="submit" class="btn" style="width:100%;margin-top:1rem;">${icon('arrowRight')} Submit Quote Request</button>
@@ -582,6 +582,7 @@ function initQuoteForm() {
     }
     
     // Submit the form via fetch as JSON
+    const company = document.getElementById('quote-company')?.value.trim() || '';
     const turnstileToken = form.querySelector('[name="cf-turnstile-response"]')?.value || '';
 
       fetch('/api/quote', {

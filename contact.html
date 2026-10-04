@@ -1831,7 +1831,6 @@ function contactFormMarkup() {
           <label for="contact-company">Company</label>
           <input type="text" id="contact-company" name="company" tabindex="-1" autocomplete="off">
         </div>
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAAFK6GaNJ-vUtafXf" data-callback="onContactTurnstileSuccess" style="margin-bottom:1rem;"></div>
         <div class="form-grid" style="margin-top:1.5rem;">
           <div class="form-field">
             <label for="contact-name">Full Name *</label>
@@ -1857,6 +1856,7 @@ function contactFormMarkup() {
             <div class="error-text" data-error="message"></div>
           </div>
         </div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAFK6GaNJ-vUtafXf" data-callback="onContactTurnstileSuccess" style="margin-bottom:1rem;"></div>
       </div>
       <div class="form-error" id="contactError">Something went wrong. Please try again or contact us directly.</div>
       <button type="submit" class="btn" style="width:100%;margin-top:1rem;">${icon('arrowRight')} Send Message</button>
