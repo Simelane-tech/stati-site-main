@@ -646,6 +646,28 @@ button {
   transform: translateY(-6px);
   box-shadow: var(--shadow-md);
 }
+.home-services-grid .service-card {
+  display: flex;
+  min-height: 22rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  overflow: hidden;
+  background-color: var(--dark-800);
+  background-position: center;
+  background-size: cover;
+  color: var(--white);
+}
+.home-services-grid .service-card h3,
+.home-services-grid .service-card p {
+  color: var(--white);
+}
+.home-services-grid .service-card p {
+  opacity: 0.9;
+}
+.home-services-grid .service-card .service-card-link {
+  color: var(--white) !important;
+}
     /* ===== TESTIMONIALS ===== */
     .testimonial-slider {
       position: relative;
@@ -665,6 +687,27 @@ button {
       padding: 0 0.75rem;
       display: flex;
       justify-content: center;
+    }
+    .testimonial-slide .panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .testimonial-slide .panel > p {
+      width: 100%;
+      max-width: 44rem;
+      text-align: center;
+    }
+    .testimonial-slide .panel > div {
+      justify-content: center;
+      width: 100%;
+    }
+    .testimonial-slide .testimonial-rating {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
     }
     .testimonial-card {
       position: relative;
@@ -1498,6 +1541,10 @@ textarea {
   .section-muted p {
     text-align: left !important;
   }
+
+  .section-muted .testimonial-slide .panel > p {
+    text-align: center !important;
+  }
   
   .section-muted .placeholder {
     min-height: auto !important;
@@ -1683,6 +1730,152 @@ textarea {
     animation: none;
   }
 }
+.festive-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: clamp(38rem, calc(100svh - 5rem), 52rem);
+  padding: clamp(3rem, 8vw, 7rem) 0;
+  color: #fff;
+  background: #10213b;
+}
+.festive-hero[hidden] { display: none !important; }
+.festive-hero__inner {
+  width: min(var(--container), calc(100% - 2rem));
+  margin: 0 auto;
+}
+.festive-offer__slides,
+.festive-offer__slides::after {
+  position: absolute;
+  inset: 0;
+}
+.festive-offer__slides {
+  z-index: -2;
+  overflow: hidden;
+}
+.festive-offer__slides::after {
+  content: "";
+  background: linear-gradient(90deg, rgba(8, 24, 43, 0.94), rgba(8, 24, 43, 0.72) 58%, rgba(8, 24, 43, 0.36));
+}
+.festive-offer__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.festive-offer__slide.is-active { opacity: 1; }
+.festive-offer__content {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 760px);
+  animation: festiveOfferEnter 700ms ease-out both;
+}
+.festive-offer__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(255, 196, 91, 0.45);
+  border-radius: 999px;
+  color: #ffd28a;
+  background: rgba(15, 31, 51, 0.62);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.festive-offer__eyebrow .icon { width: 0.85rem; height: 0.85rem; }
+.festive-offer__title {
+  margin: 1rem 0 0;
+  color: #fff;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+.festive-offer__copy {
+  max-width: 39rem;
+  margin: 0.9rem 0 0;
+  color: rgba(255, 255, 255, 0.88);
+}
+.festive-offer__details {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.2rem;
+  margin-top: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.86rem;
+}
+.festive-offer__code {
+  padding: 0.25rem 0.55rem;
+  border: 1px dashed rgba(255, 210, 138, 0.72);
+  border-radius: 0.4rem;
+  color: #ffd28a;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.festive-offer__countdown {
+  display: flex;
+  gap: 0.45rem;
+}
+.festive-offer__countdown span {
+  min-width: 3.4rem;
+  padding: 0.4rem 0.45rem;
+  border-radius: 0.55rem;
+  background: rgba(255, 255, 255, 0.13);
+  text-align: center;
+}
+.festive-offer__countdown strong,
+.festive-offer__countdown small {
+  display: block;
+}
+.festive-offer__countdown strong { color: #fff; font-size: 1rem; line-height: 1.2; }
+.festive-offer__countdown small { color: rgba(255, 255, 255, 0.75); font-size: 0.62rem; }
+.festive-offer__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+  padding: 0.9rem 1.3rem;
+  border-radius: 0.75rem;
+  color: #17243a;
+  background: #ffbd54;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+  font-weight: 800;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.festive-offer__button:hover {
+  transform: translateY(-3px);
+  background: #ffd28a;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+.festive-offer__countdown[hidden] { display: none !important; }
+@keyframes festiveOfferEnter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 600px) {
+  .festive-hero {
+    min-height: max(38rem, calc(100svh - 5rem));
+    padding: 3rem 0;
+  }
+  .festive-offer__slides::after {
+    background: linear-gradient(90deg, rgba(8, 24, 43, 0.94), rgba(8, 24, 43, 0.76));
+  }
+  .festive-offer__details { align-items: flex-start; flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .festive-offer__slide { transition: none; }
+  .festive-offer__content { animation: none; }
+  .festive-offer__button { transition: none; }
+}
   </style>
 </head>
 <body data-page='home'>
@@ -1761,7 +1954,7 @@ window.SITE_DATA = {
       features: ['Logo Design & Brand Identity', 'Brand Guidelines & Style Guides', 'Business Cards & Stationery', 'Corporate Merchandise', 'Brand Strategy Consulting'],
       icon: 'briefcase',
       gradient: 'gradient-primary',
-      image: 'https://assets.zyrosite.com/A0xe5ryPLWs7k8NG/letshego-board-GMF7xhsqgVu5sfWr.jpeg'
+      image: 'assets/images/Corporate%20Branding/Manzini%20Wall%20painting.jpeg'
     },
     {
       id: 'promotional-products',
@@ -1771,7 +1964,7 @@ window.SITE_DATA = {
       features: ['Custom Mugs & Drinkware', 'Branded Pens & Stationery', 'Tech Accessories', 'Corporate Gift Sets', 'Event Giveaways'],
       icon: 'gift',
       gradient: 'gradient-accent',
-      image: 'https://assets.zyrosite.com/A0xe5ryPLWs7k8NG/diary-and-pens-rdQLcCzUf3rSEhAf.jpeg'
+      image: 'assets/images/September/Stainless%20Cups.jpeg'
     },
     {
       id: 'printing-services',
@@ -1781,7 +1974,7 @@ window.SITE_DATA = {
       features: ['Business Cards & Flyers', 'Brochures & Catalogs', 'Sublimation Printing', 'Digital & Offset Printing', 'Packaging Design & Print'],
       icon: 'printer',
       gradient: 'gradient-dark',
-      image: 'https://assets.zyrosite.com/A0xe5ryPLWs7k8NG/frosting-RgRquBftchPq8cgx.jpeg'
+      image: 'assets/images/September/Tshirt%20Press%20Printing.jpeg'
     },
     {
       id: 'custom-apparel',
@@ -1791,7 +1984,7 @@ window.SITE_DATA = {
       features: ['Sublimated T-Shirts & Polos', 'Custom Jackets & Hoodies', 'Corporate Uniforms', 'Sports & Team Wear', 'Event Merchandise'],
       icon: 'shirt',
       gradient: 'gradient-mixed',
-      image: 'https://assets.zyrosite.com/A0xe5ryPLWs7k8NG/sadc-hatiii-2026-01-30-at-09.16.27-pPnMW0UDVFdi4AeB.jpeg'
+      image: 'assets/images/Apparel/Uniform.png'
     },
     {
       id: 'large-format-printing',
@@ -1801,7 +1994,7 @@ window.SITE_DATA = {
       features: ['Pull-Up & Roll-Up Banners', 'Exhibition Stands & Graphics', 'Outdoor Signage & Billboards', 'Vehicle Wraps & Branding', 'Wall Graphics & Murals'],
       icon: 'panel',
       gradient: 'gradient-dark-green',
-      image: 'https://assets.zyrosite.com/A0xe5ryPLWs7k8NG/engine-NnrIUtUeFqd1tK1B.jpeg'
+      image: 'assets/images/Exhibition%20Stands/Gazebo%20Exhibition.png'
     }
   ],
   stats: [
@@ -1942,6 +2135,8 @@ const { company, navLinks, services, stats, testimonials, portfolioCategories, p
 
 const shell = document.getElementById('site-shell');
 const page = document.body.dataset.page || 'home';
+const FESTIVE_OFFER_ENDS_AT = Date.parse('2026-12-31T23:59:59+02:00');
+const festiveOfferIsActive = Date.now() < FESTIVE_OFFER_ENDS_AT;
 const logoDataUri = 'assets/images/logo.png'; // sibeve logo image path
 
 const iconSvg = {
@@ -2050,6 +2245,25 @@ function footerMarkup() {
       </div>
       <div class="footer-main">
         <div class="container">
+          <div style="position:relative;z-index:46;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem;padding:1.4rem;margin-bottom:2.25rem;border:1px solid rgba(249,155,29,0.55);border-radius:1.1rem;background:linear-gradient(120deg,#fff4dc,#ffe2a1);color:#252627;">
+            <div style="max-width:22rem;">
+              <span style="font-size:0.72rem;font-weight:800;letter-spacing:0.1em;color:#a65a0a;">DISCOVER MORE</span>
+              <h3 style="margin:0.35rem 0;font-size:1.2rem;">A little more from Sibeve</h3>
+              <p style="margin:0;font-size:0.88rem;color:#4c4d4f;">Share your experience or find a fresh idea for your next campaign.</p>
+            </div>
+            <div style="display:flex;flex:1 1 440px;flex-wrap:wrap;gap:0.8rem;">
+              <a href="rate-service.html" style="display:flex;flex:1 1 210px;align-items:center;gap:0.8rem;min-height:4.5rem;padding:0.8rem;border:1px solid rgba(30,143,69,0.24);border-radius:0.85rem;background:#fff;color:#252627;box-shadow:0 6px 16px rgba(23,23,23,0.08);">
+                <span style="display:flex;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;flex:none;border-radius:0.7rem;background:#eef9f1;color:#18743a;">${icon('star')}</span>
+                <span style="flex:1;"><strong style="display:block;">Rate Our Service</strong><small style="color:#5d5f61;">Tell us how we did</small></span>
+                <span style="font-size:1.3rem;color:#18743a;">→</span>
+              </a>
+              <a href="weekly-inspiration.html" style="display:flex;flex:1 1 210px;align-items:center;gap:0.8rem;min-height:4.5rem;padding:0.8rem;border:1px solid rgba(249,155,29,0.35);border-radius:0.85rem;background:#fff;color:#252627;box-shadow:0 6px 16px rgba(23,23,23,0.08);">
+                <span style="display:flex;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;flex:none;border-radius:0.7rem;background:#fff8eb;color:#a65a0a;">${icon('bulb')}</span>
+                <span style="flex:1;"><strong style="display:block;">Weekly Inspiration</strong><small style="color:#5d5f61;">Ideas to keep you moving</small></span>
+                <span style="font-size:1.3rem;color:#a65a0a;">→</span>
+              </a>
+            </div>
+          </div>
           <div class="footer-grid">
             <div>
               <a href="index.html" class="brand" style="min-width:245px;"><img src="${logoDataUri}" alt="Sibeve logo" style="width:245px;"></a>
@@ -2064,8 +2278,6 @@ function footerMarkup() {
               <h4>Quick Links</h4>
               <ul class="clean-list" style="margin-top:1rem;">
                 ${navLinks.map(link => `<li><a class="text-light" href="${link.href}">${link.label}</a></li>`).join('')}
-                <li><a class="text-light" href="rate-service.html">${icon('star')} Rate Our Service</a></li>
-                <li><a class="text-light" href="weekly-inspiration.html">${icon('bulb')} Weekly Inspiration</a></li>
                 <li><a href="quote.html" style="color:var(--primary-300);font-weight:700;">Request a Quote</a></li>
               </ul>
             </div>
@@ -2109,7 +2321,7 @@ function footerMarkup() {
 }
 
 function heroCommon(badge, title, description, visual = '') {
-  return `<section class="hero">
+  const standardHero = `<section class="hero"${page === 'home' ? ` id="homeStandardHero"${festiveOfferIsActive ? ' hidden' : ''}` : ''}>
     <div class="container hero-inner">
       <div class="${visual ? 'hero-grid' : ''}">
         <div class="${revealClass('up')}">
@@ -2122,6 +2334,37 @@ function heroCommon(badge, title, description, visual = '') {
           </div>
         </div>
         ${visual}
+      </div>
+    </div>
+  </section>`;
+  if (page !== 'home') return standardHero;
+  return `${festiveOfferBanner()}${standardHero}`;
+}
+function festiveOfferBanner() {
+  return `<section class="festive-hero" id="festiveOfferBanner"${festiveOfferIsActive ? '' : ' hidden'} data-ends-at="${new Date(FESTIVE_OFFER_ENDS_AT).toISOString()}" aria-label="Limited-time festive offer">
+    <div class="festive-offer__slides" aria-hidden="true">
+      <img class="festive-offer__slide" src="assets/images/November/Manicipal-Council-of-Mbabane.jpeg" alt="" />
+      <img class="festive-offer__slide" src="assets/images/October/Trophie-2.jpeg" alt="" />
+      <img class="festive-offer__slide" src="assets/images/Promotional%20Items/promotional%20sublimated%20clothing.png" alt="" />
+      <img class="festive-offer__slide" src="assets/images/September/ANTI%20CORRUPTION%20(1).jpeg" alt="" />
+      <img class="festive-offer__slide" src="assets/images/November/Mbabane%20Day.jpeg" alt="" />
+    </div>
+    <div class="festive-hero__inner">
+      <div class="festive-offer__content">
+        <span class="festive-offer__eyebrow">${icon('gift')} Festive offers · Limited time</span>
+        <h1 class="festive-offer__title">Make your brand the gift everyone remembers.</h1>
+        <p class="festive-offer__copy">Celebrate the season with festive pricing on selected branded gifts, custom apparel and promotional products. Request a quote and our team will check the offer for your order.</p>
+        <div class="festive-offer__details">
+          <span>Use offer code <strong class="festive-offer__code">FESTIVE26</strong></span>
+          <span>Ends 31 December 2026</span>
+          <div class="festive-offer__countdown" aria-hidden="true">
+            <span><strong data-countdown="days">00</strong><small>Days</small></span>
+            <span><strong data-countdown="hours">00</strong><small>Hours</small></span>
+            <span><strong data-countdown="minutes">00</strong><small>Minutes</small></span>
+            <span><strong data-countdown="seconds">00</strong><small>Seconds</small></span>
+          </div>
+        </div>
+        <a class="festive-offer__button" href="quote.html?offer=FESTIVE26&amp;source=hero-banner">Request festive pricing ${icon('arrowRight')}</a>
       </div>
     </div>
   </section>`;
@@ -2161,14 +2404,11 @@ function homePage() {
         <div class="floating-card bottom-right secondary"><strong>5-Star Rated</strong><div style="font-size:0.8rem;color:var(--dark-400);">Client satisfaction</div></div>
       </div>
     </div>`)}
-    <section class="section section-dark" style="padding-top:0; margin-top:-3rem; background:transparent; color:white;">
-      <div class="container"><div class="stats-inline">${counterBlock(stats.slice(0,3))}</div></div>
-    </section>
     <section class="section" style="padding-top:2rem;">
       <div class="container">
         ${sectionHead('What We Do', 'Our Services', 'From corporate branding to custom apparel, we offer a complete range of promotional and branding solutions to elevate your business.')}
-        <div class="card-grid three" style="margin-top:3rem;">
-          ${services.map(service => `<a href="services.html#${service.id}" class="card card-hover ${revealClass('up')}"><div class="icon-box">${icon(service.icon)}</div><h3 style="margin-top:1.25rem;">${service.title}</h3><p class="text-muted" style="margin-top:0.75rem;">${service.shortDesc}</p><div style="margin-top:1.25rem;color:var(--primary-600);font-weight:700;display:flex;gap:0.5rem;align-items:center;">Learn More ${icon('arrowRight')}</div></a>`).join('')}
+        <div class="card-grid three home-services-grid" style="margin-top:3rem;">
+          ${services.map(service => `<a href="services.html#${service.id}" class="card card-hover service-card ${revealClass('up')}" style="background-image:linear-gradient(180deg,rgba(8,24,16,0.28) 0%,rgba(8,24,16,0.88) 100%),url('${service.image}')"><h3>${service.title}</h3><p style="margin-top:0.75rem;">${service.shortDesc}</p><div class="service-card-link" style="margin-top:1.25rem;font-weight:700;display:flex;gap:0.5rem;align-items:center;">Learn More ${icon('arrowRight')}</div></a>`).join('')}
         </div>
       </div>
     </section>
@@ -2206,7 +2446,7 @@ function homePage() {
         ${sectionHead('Testimonials', 'What Our Clients Say', 'Hear from businesses that trust us with their brand.')}
         <div class="testimonial-slider" id="testimonialSlider">
           <div class="testimonial-track" id="testimonialTrack">
-            ${testimonials.map(t => `<div class="testimonial-slide"><div class="panel card-hover ${revealClass('up')}"><p class="text-muted" style="margin-top:1rem;font-style:italic;line-height:1.6;">“${t.content}”</p><div style="border-top:1px solid var(--dark-100);margin-top:1.5rem;padding-top:1.5rem;text-align:center;"><div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:0.75rem;"><div class="icon-box" style="border-radius:999px;background:var(--primary-100);font-weight:700;width:3rem;height:3rem;display:flex;align-items:center;justify-content:center;">${t.name.charAt(0)}</div><div><div style="font-weight:700;font-size:1.1rem;">${t.name}</div><div style="color:var(--dark-400);font-size:0.85rem;">${t.role}</div></div></div><div style="display:flex;gap:0.25rem;color:var(--accent-400);justify-content:center;">${Array.from({length:t.rating}).map(() => icon('star')).join('')}</div></div></div></div>`).join('')}
+            ${testimonials.map(t => `<div class="testimonial-slide"><div class="panel card-hover ${revealClass('up')}"><p class="text-muted" style="margin-top:1rem;font-style:italic;line-height:1.6;">“${t.content}”</p><div style="border-top:1px solid var(--dark-100);margin-top:1.5rem;padding-top:1.5rem;text-align:center;"><div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:0.75rem;"><div class="icon-box" style="border-radius:999px;background:var(--primary-100);font-weight:700;width:3rem;height:3rem;display:flex;align-items:center;justify-content:center;">${t.name.charAt(0)}</div><div><div style="font-weight:700;font-size:1.1rem;">${t.name}</div><div style="color:var(--dark-400);font-size:0.85rem;">${t.role}</div><div class="testimonial-rating" style="gap:0.25rem;color:var(--accent-400);">${Array.from({length:t.rating}).map(() => icon('star')).join('')}</div></div></div></div></div></div>`).join('')}
           </div>
           <div class="testimonial-nav">
             <button type="button" id="testimonialPrev" aria-label="Previous testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"></path></svg></button>
@@ -2306,6 +2546,63 @@ function initCounters() {
   counters.forEach(counter => observer.observe(counter));
 }
 
+function initFestiveOffer() {
+  const banner = document.getElementById('festiveOfferBanner');
+  const standardHero = document.getElementById('homeStandardHero');
+  if (!banner || !standardHero) return;
+  const endsAt = Date.parse(banner.dataset.endsAt);
+  const countdown = banner.querySelector('.festive-offer__countdown');
+  const slides = Array.from(banner.querySelectorAll('.festive-offer__slide'));
+  let timer;
+  let slideTimer;
+
+  function showStandardHero() {
+    banner.hidden = true;
+    standardHero.hidden = false;
+    if (timer) window.clearInterval(timer);
+    if (slideTimer) window.clearInterval(slideTimer);
+  }
+
+  if (!Number.isFinite(endsAt) || endsAt <= Date.now()) {
+    showStandardHero();
+    return;
+  }
+
+  if (slides.length) {
+    let activeSlide = 0;
+    slides[activeSlide].classList.add('is-active');
+    if (slides.length > 1) {
+      slideTimer = window.setInterval(() => {
+        slides[activeSlide].classList.remove('is-active');
+        activeSlide = (activeSlide + 1) % slides.length;
+        slides[activeSlide].classList.add('is-active');
+      }, 6000);
+    }
+  }
+
+  function updateCountdown() {
+    const remaining = endsAt - Date.now();
+    if (remaining <= 0) {
+      showStandardHero();
+      return;
+    }
+
+    const values = {
+      days: Math.floor(remaining / 86400000),
+      hours: Math.floor((remaining / 3600000) % 24),
+      minutes: Math.floor((remaining / 60000) % 60),
+      seconds: Math.floor((remaining / 1000) % 60)
+    };
+    Object.entries(values).forEach(([unit, value]) => {
+      const element = countdown.querySelector(`[data-countdown="${unit}"]`);
+      element.textContent = String(value).padStart(2, '0');
+    });
+  }
+
+  updateCountdown();
+  timer = window.setInterval(updateCountdown, 1000);
+}
+
 function initNewsletter() {
   const form = document.getElementById('newsletterForm');
   const email = document.getElementById('newsletterEmail');
@@ -2325,6 +2622,7 @@ function initTestimonialSlider() { }
 initNav();
 initReveal();
 initCounters();
+initFestiveOffer();
 initNewsletter();
 initPortfolio();
 initTestimonialSlider();

@@ -2,6 +2,9 @@ const { sendFormEmails, escapeHtml, readJsonBody, setCorsHeaders } = require('./
 const { isValidEmail, sanitizeField, isRateLimited, getClientIp } = require('./_lib/security');
 const { verifyTurnstile } = require('./_lib/turnstile');
 
+const FESTIVE_OFFER_CODE = 'FESTIVE26';
+const FESTIVE_OFFER_ENDS_AT = Date.parse('2026-12-31T23:59:59+02:00');
+
 module.exports = async function handler(req, res) {
   setCorsHeaders(req, res);
 
@@ -40,6 +43,12 @@ module.exports = async function handler(req, res) {
   const phone = sanitizeField(body.phone, 40);
   const service = sanitizeField(body.service, 150);
   const description = sanitizeField(body.description, 5000);
+  const offer = sanitizeField(body.offer, 32);
+  const offerSource = sanitizeField(body.offerSource, 40);
+  const festiveOfferApplied =
+    offer === FESTIVE_OFFER_CODE &&
+    offerSource === 'hero-banner' &&
+    Date.now() <= FESTIVE_OFFER_ENDS_AT;
 
   if (!name || !email || !service || !description) {
     return res
@@ -60,6 +69,7 @@ module.exports = async function handler(req, res) {
       `Email: ${email}`,
       `Phone: ${phone || 'N/A'}`,
       `Service Needed: ${service}`,
+      ...(festiveOfferApplied ? [`Promotion: ${FESTIVE_OFFER_CODE} (clicked homepage hero banner)`] : []),
       '',
       'Project Description:',
       description,
@@ -71,6 +81,7 @@ module.exports = async function handler(req, res) {
         <tr><td><strong>Email</strong></td><td>${escapeHtml(email)}</td></tr>
         <tr><td><strong>Phone</strong></td><td>${escapeHtml(phone || 'N/A')}</td></tr>
         <tr><td><strong>Service Needed</strong></td><td>${escapeHtml(service)}</td></tr>
+        ${festiveOfferApplied ? `<tr><td><strong>Promotion</strong></td><td>${FESTIVE_OFFER_CODE} — clicked homepage hero banner</td></tr>` : ''}
       </table>
       <p><strong>Project Description:</strong></p>
       <p>${escapeHtml(description).replace(/\n/g, '<br>')}</p>
@@ -88,6 +99,9 @@ module.exports = async function handler(req, res) {
       '',
       'Here is a copy of your request:',
       `Service Needed: ${service}`,
+      ...(festiveOfferApplied
+        ? [`Promotion: ${FESTIVE_OFFER_CODE} from the homepage festive banner. Our team will check eligibility and include applicable festive pricing in your quote.`]
+        : []),
       `Project Description: ${description}`,
       '',
       'What happens next?',
@@ -106,6 +120,7 @@ module.exports = async function handler(req, res) {
       <p><strong>Here is a copy of your request:</strong></p>
       <table cellpadding="6" style="border-collapse:collapse;">
         <tr><td><strong>Service Needed</strong></td><td>${escapeHtml(service)}</td></tr>
+        ${festiveOfferApplied ? `<tr><td><strong>Promotion</strong></td><td>${FESTIVE_OFFER_CODE} — homepage festive banner. Our team will check eligibility and include applicable festive pricing in your quote.</td></tr>` : ''}
         <tr><td><strong>Project Description</strong></td><td>${escapeHtml(description).replace(/\n/g, '<br>')}</td></tr>
       </table>
       <p><strong>What happens next?</strong></p>
