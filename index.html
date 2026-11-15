@@ -403,6 +403,9 @@ button {
 .quote-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+.two-col > * {
+  min-width: 0;
+}
 .hero-visual,
 .placeholder-card {
   position: relative;
@@ -1182,6 +1185,7 @@ textarea {
 .quote-fab {
   position: fixed;
   right: 1.25rem;
+  left: auto;
   z-index: 45;
   display: inline-flex;
   align-items: center;
@@ -1288,7 +1292,7 @@ textarea {
   .service-row,
   .contact-grid,
   .quote-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .service-row > div:last-child {
     display: none !important;
@@ -1415,6 +1419,7 @@ textarea {
   .whatsapp-fab,
   .quote-fab {
     right: 1rem;
+    left: auto;
     font-size: 0.85rem;
   }
 
@@ -1871,6 +1876,140 @@ textarea {
   }
   .festive-offer__details { align-items: flex-start; flex-direction: column; }
 }
+@media (max-width: 768px) {
+  main,
+  footer,
+  header .mobile-menu {
+    text-align: center !important;
+  }
+
+  main *,
+  footer *,
+  header .mobile-menu * {
+    text-align: center !important;
+  }
+
+  main .container,
+  footer .container,
+  main .section-head,
+  main .section-head.left,
+  main .section-head *,
+  main p,
+  main h1,
+  main h2,
+  main h3,
+  main h4,
+  footer p,
+  footer h3,
+  footer h4,
+  footer li,
+  footer a {
+    text-align: center !important;
+  }
+
+  main .inline-actions,
+  main .hero-buttons,
+  main .hero-grid,
+  main .hero-inner,
+  main .stats-inline,
+  main .stats-grid,
+  main .card-grid,
+  main .process-grid,
+  main .blog-grid,
+  main .portfolio-grid,
+  main .values-grid,
+  main .team-grid,
+  footer .footer-cta .container,
+  footer .footer-bottom .container,
+  footer .footer-bottom-links,
+  footer .inline-actions,
+  footer .footer-social,
+  footer .newsletter-form,
+  header .mobile-menu .container {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  main .inline-actions,
+  footer .inline-actions,
+  footer .footer-bottom-links,
+  footer .footer-social,
+  footer .newsletter-form {
+    width: 100%;
+  }
+
+  main .btn,
+  main .btn-outline,
+  main .btn-white,
+  footer .btn,
+  footer .btn-outline,
+  footer button,
+  header .mobile-menu .btn {
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  main .section-muted .card-grid.two .reveal-up > div {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  main .section-muted .card-grid.two h4,
+  main .section-muted .card-grid.two p,
+  main .section-muted h2,
+  main .section-muted h3,
+  main .section-muted h4,
+  main .section-muted p {
+    text-align: center !important;
+  }
+
+  footer .footer-cta .container,
+  footer .footer-bottom .container,
+  footer .footer-grid > div {
+    flex-direction: column;
+  }
+
+  footer .footer-grid > div,
+  footer .clean-list li,
+  footer .footer-discover {
+    align-items: center;
+  }
+
+  footer .clean-list li {
+    justify-content: center;
+  }
+
+  footer .footer-grid > div {
+    display: flex;
+  }
+
+  footer .footer-discover__links {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  footer .footer-discover__links > a {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .whatsapp-fab,
+  .quote-fab {
+    right: 1rem;
+    left: auto;
+  }
+
+  .quote-fab.show {
+    transform: translate(0, 0);
+  }
+
+  .festive-offer__details {
+    align-items: center !important;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .festive-offer__slide { transition: none; }
   .festive-offer__content { animation: none; }
@@ -2245,13 +2384,13 @@ function footerMarkup() {
       </div>
       <div class="footer-main">
         <div class="container">
-          <div style="position:relative;z-index:46;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem;padding:1.4rem;margin-bottom:2.25rem;border:1px solid rgba(249,155,29,0.55);border-radius:1.1rem;background:linear-gradient(120deg,#fff4dc,#ffe2a1);color:#252627;">
+          <div class="footer-discover" style="position:relative;z-index:46;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem;padding:1.4rem;margin-bottom:2.25rem;border:1px solid rgba(249,155,29,0.55);border-radius:1.1rem;background:linear-gradient(120deg,#fff4dc,#ffe2a1);color:#252627;">
             <div style="max-width:22rem;">
               <span style="font-size:0.72rem;font-weight:800;letter-spacing:0.1em;color:#a65a0a;">DISCOVER MORE</span>
               <h3 style="margin:0.35rem 0;font-size:1.2rem;">A little more from Sibeve</h3>
               <p style="margin:0;font-size:0.88rem;color:#4c4d4f;">Share your experience or find a fresh idea for your next campaign.</p>
             </div>
-            <div style="display:flex;flex:1 1 440px;flex-wrap:wrap;gap:0.8rem;">
+            <div class="footer-discover__links" style="display:flex;flex:1 1 440px;flex-wrap:wrap;gap:0.8rem;">
               <a href="rate-service.html" style="display:flex;flex:1 1 210px;align-items:center;gap:0.8rem;min-height:4.5rem;padding:0.8rem;border:1px solid rgba(30,143,69,0.24);border-radius:0.85rem;background:#fff;color:#252627;box-shadow:0 6px 16px rgba(23,23,23,0.08);">
                 <span style="display:flex;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;flex:none;border-radius:0.7rem;background:#eef9f1;color:#18743a;">${icon('star')}</span>
                 <span style="flex:1;"><strong style="display:block;">Rate Our Service</strong><small style="color:#5d5f61;">Tell us how we did</small></span>
@@ -2416,7 +2555,9 @@ function homePage() {
       <div class="container two-col">
         <div class="reveal reveal-left">${placeholder('Team at Work', 'gradient-mixed', 450, 'assets/images/Promotional%20Items/Sibeve%20Staff.png')}</div>
         <div class="reveal reveal-right">
-          ${sectionHead('Why Choose Us', 'Your Trusted Branding Partner in Eswatini', 'We combine creativity, quality, and reliability to deliver branding solutions that truly make a difference.', 'left')}
+          <div style="text-align:center; display:block; width:100%;">
+            ${sectionHead('Why Choose Us', 'Your Trusted Branding Partner in Eswatini', 'We combine creativity, quality, and reliability to deliver branding solutions that truly make a difference.')}
+          </div>
           <div class="card-grid two" style="margin-top:2rem;">
             ${[
               ['zap','Fast Turnaround','Quick delivery without compromising on quality.'],

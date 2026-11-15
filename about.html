@@ -1506,12 +1506,12 @@ window.SITE_DATA = {
     { id: 'exhibition-stand-design-tips', title: '5 Exhibition Stand Design Tips That Drive Engagement', excerpt: 'Learn how to create exhibition stands that attract visitors and generate leads at trade shows and events.', category: 'Marketing Tips', date: '2024-02-15', readTime: '4 min read', gradient: 'gradient-dark', image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80' }
   ],
   team: [
-    { name: 'Trevor Mthethwa', role: 'Managing Director', initials: 'TM', image: 'assets/images/Sibeve%20Team/Trevor%20Mthethwa.png' },
-    { name: 'Ritta Khumalo', role: 'Operation Manager', initials: 'RK', image: 'assets/images/Sibeve%20Team/Ritta%20Khumalo.jpeg' },
-    { name: 'Nosipho Simelane', role: 'Admin Officer', initials: 'NS', image: 'assets/images/Sibeve%20Team/Nosipho%20Simelane.jpeg' },
-    { name: 'Lihle Ndzinisa', role: 'Sales & Marketing', initials: 'LN', image: 'assets/images/Sibeve%20Team/Lihle%20Ndzinisa.jpeg' },
-    { name: 'Kwanele Simelane', role: 'IT & Sales Representative', initials: 'KS', image: 'assets/images/Sibeve%20Team/Kwanele%20Simelane.jpeg' },
-    { name: 'Nokubonga Dlamini', role: 'Sales Representative', initials: 'ND', image: 'assets/images/Sibeve%20Team/Nokubongwa%20Dlamini.jpeg' }
+    { name: 'Trevor Mthethwa', role: 'Managing Director', department: 'Leadership', level: 'lead', initials: 'TM', image: 'assets/images/Sibeve%20Team/Trevor%20Mthethwa.png' },
+    { name: 'Ritta Khumalo', role: 'Operations Manager', department: 'Operations', level: 'lead', initials: 'RK', image: 'assets/images/Sibeve%20Team/Ritta%20Khumalo.jpeg' },
+    { name: 'Lihle Ndzinisa', role: 'Sales & Marketing Lead', department: 'Sales & Marketing', level: 'team', initials: 'LN', image: 'assets/images/Sibeve%20Team/Lihle%20Ndzinisa.jpeg' },
+    { name: 'Kwanele Simelane', role: 'IT & Sales Representative', department: 'Sales & IT', level: 'team', initials: 'KS', image: 'assets/images/Sibeve%20Team/Kwanele-Prof.png' },
+    { name: 'Nokubonga Dlamini', role: 'Sales Representative', department: 'Sales', level: 'team', initials: 'ND', image: 'assets/images/Sibeve%20Team/Nokubongwa%20Dlamini.jpeg' },
+    { name: 'Nosipho Simelane', role: 'Admin Officer', department: 'Administration', level: 'team', initials: 'NS', image: 'assets/images/Sibeve%20Team/Nosipho%20Simelane.jpeg' }
   ]
 };
   </script>
@@ -1786,7 +1786,33 @@ function aboutPage() {
     <section class="section section-muted"><div class="container card-grid two"><div class="panel ${revealClass('up')}"><div class="icon-box">${icon('target')}</div><h3 style="margin-top:1.25rem;">Our Mission</h3><p class="text-muted" style="margin-top:0.8rem;">To empower businesses in Eswatini and beyond with innovative, high-quality branding and promotional solutions that drive visibility, build trust, and create lasting impressions.</p></div><div class="panel ${revealClass('up')}"><div class="icon-box accent">${icon('eye')}</div><h3 style="margin-top:1.25rem;">Our Vision</h3><p class="text-muted" style="margin-top:0.8rem;">To be the leading creative branding agency in Southern Africa, recognized for exceptional quality, innovation, and client satisfaction.</p></div></div></section>
     <section class="section"><div class="container">${sectionHead('Our Values','What Drives Us','Our core values shape everything we do, from the way we create to how we serve our clients.')}<div class="values-grid" style="margin-top:3rem;">${[['award','Excellence','We never settle for mediocre. Every project gets our best.'],['heart','Passion','We love what we do, and it shows in every design.'],['bulb','Innovation','We stay ahead with the latest trends and technology.'],['users','Partnership','Your success is our success. We grow together.']].map(v => `<div class="${revealClass('up')}" style="text-align:center;"><div class="icon-box" style="margin:0 auto;">${icon(v[0])}</div><h4 style="margin-top:1rem;">${v[1]}</h4><p class="text-muted" style="margin-top:0.5rem;">${v[2]}</p></div>`).join('')}</div></div></section>
     <section class="section stats-band"><div class="container"><div class="stats-grid">${counterBlock(stats)}</div></div></section>
-    <section class="section"><div class="container">${sectionHead('Our Team','Meet the People Behind the Brand','A talented team of creatives, designers, and branding experts dedicated to your success.')}<div class="team-grid" style="margin-top:3rem;">${team.map(member => `<div class="${revealClass('up')}" style="text-align:center;"><div style="width:8rem;height:8rem;border-radius:999px;margin:0 auto;overflow:hidden;box-shadow:var(--shadow-sm);"><img src="${member.image}" alt="${member.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;" /></div><h4 style="margin-top:1rem;">${member.name}</h4><p class="text-muted">${member.role}</p></div>`).join('')}</div></div></section>
+    <section class="section"><div class="container">${sectionHead('Our Team','Meet the People Behind the Brand','A talented team of creatives, designers, and branding experts dedicated to your success.')}<div class="org-chart" style="margin-top:3rem;">${(() => {
+      const leadership = team.filter(member => member.level === 'lead');
+      const coreTeam = team.filter(member => member.level === 'team');
+      return `
+        <div class="org-tier org-tier-lead">
+          ${leadership.map(member => `
+            <div class="org-card ${revealClass('up')}">
+              <div class="org-avatar"><img src="${member.image}" alt="${member.name}" loading="lazy" /></div>
+              <h4 class="org-name">${member.name}</h4>
+              <p class="org-role text-muted">${member.role}</p>
+              <div class="badge" style="margin-top:0.75rem; font-size:0.68rem; padding:0.35rem 0.7rem;">${member.department}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="org-connector" aria-hidden="true"></div>
+        <div class="org-tier org-tier-team">
+          ${coreTeam.map(member => `
+            <div class="org-card ${revealClass('up')}">
+              <div class="org-avatar"><img src="${member.image}" alt="${member.name}" loading="lazy" /></div>
+              <h4 class="org-name">${member.name}</h4>
+              <p class="org-role text-muted">${member.role}</p>
+              <div class="badge" style="margin-top:0.75rem; font-size:0.68rem; padding:0.35rem 0.7rem;">${member.department}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    })()}</div></div></section>
     ${ctaSection('Let\'s Build Something <span class="gradient-text">Amazing Together</span>', 'Ready to take your brand to the next level? We would love to hear from you.', '<a href="quote.html" class="btn">Get a Quote '+icon('arrowRight')+'</a><a href="contact.html" class="btn-white">Contact Us</a>')}
   `;
 }
